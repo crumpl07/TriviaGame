@@ -6,10 +6,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 public class LoginPage extends Application{
+	
+	TextField username = new TextField();
+	TextField password = new TextField();
 	
 	public void start(Stage stage) 
 	{
@@ -32,14 +34,18 @@ public class LoginPage extends Application{
 	
 	public void signInButton(Group root, Stage stage)
 	{
+		String password, username;
+		
 		Button button = new Button();
 		button.setText("Sign In");
 		button.setPrefSize(100, 50);
 		button.setTranslateX(300);
 		button.setTranslateY(250);
 		
+		HomePage home = new HomePage();
+		
 		button.setOnAction(e-> {
-			System.out.println("Take username input and password input");
+			home.homePage(stage);
 		});
 		
 		root.getChildren().add(button);
@@ -67,11 +73,11 @@ public class LoginPage extends Application{
 		Label username = new Label("Username:");
 		username.setTranslateX(240);
 		username.setTranslateY(175);
-		TextField textField = new TextField ();
-		textField.setTranslateX(300);
-		textField.setTranslateY(170);
+
+		this.username.setTranslateX(300);
+		this.username.setTranslateY(170);
 		
-		root.getChildren().addAll(username, textField);
+		root.getChildren().addAll(username, this.username);
 	}
 	
 	public void passwordBox(Group root)
@@ -79,11 +85,11 @@ public class LoginPage extends Application{
 		Label password = new Label("Password:");
 		password.setTranslateX(240);
 		password.setTranslateY(205);
-		TextField textField = new TextField();
-		textField.setTranslateX(300);
-		textField.setTranslateY(200);
 		
-		root.getChildren().addAll(password, textField);
+		this.password.setTranslateX(300);
+		this.password.setTranslateY(200);
+		
+		root.getChildren().addAll(password, this.password);
 	}
 /*
 	public void createButton(Group root, Stage stage)
