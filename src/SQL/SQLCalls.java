@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class SQLCalls {
 	// JDBC driver name and database URL
@@ -15,7 +14,7 @@ public class SQLCalls {
 
 	// Database credentials
 	String USER = "root";
-	String PASS = "toor";
+	String PASS = "Uff.ar.ted07";
 
 	Connection conn = null;
 	Statement stmt = null;
