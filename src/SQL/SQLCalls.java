@@ -30,21 +30,7 @@ public class SQLCalls {
 	public static void main(String[] args) {
 		SQLCalls s = new SQLCalls("mysql.us.cloudlogin.co", "3306", "dkhalil_cs317", "dkhalil_cs317", "6d9d6FHkfI");
 		try {
-//			System.out.println("Total Deaths: " + s.getTotalDeaths("username1"));
-//			System.out.println("Total Kills: " + s.getTotalKills("username1"));
-//			System.out.println("Display Name: " + s.getDisplayName("username1"));
-//			System.out.println("Password: " + s.getPassword("username1"));
-//			System.out.println("Admin: " + s.getAdminStatus("username1"));
 //			
-//			System.out.println("Average Life Span: " + s.getAvgLifespan("username1"));
-//			System.out.println("Total Time Played " + s.getTotalTimePlayed("username1"));
-//			System.out.println("Amount of Days Played: " + s.getDaysPlayed("username1"));
-//			System.out.println("Average Match Length: " + s.getAvgMatchLength("username1"));
-			
-//			s.removeRecord("Moo");
-//			s.setLosses("Doopy", 69);
-//			System.out.println(s.getTotalWins("Danny"));
-//			System.out.println(s.getTotalLosses("Danny"));
 	
 		} catch (Exception e) {
 			e.printStackTrace();
