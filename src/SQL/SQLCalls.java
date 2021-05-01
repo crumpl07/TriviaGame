@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class SQLCalls {
 	// JDBC driver name and database URL
-	public String DB_URL = "jdbc:mysql://localhost:3306/players";
+	public String DB_URL = "jdbc:mysql://localhost:3306/TriviaGame?user=root&password=Uff.ar.ted07&useUnicode=true&characterEncoding=UTF-8";
 
 	// Database credentials
 	String USER = "root";
@@ -27,10 +27,12 @@ public class SQLCalls {
 	 */
 	
 	public static void main(String[] args) {
-		SQLCalls s = new SQLCalls("mysql.us.cloudlogin.co", "3306", "dkhalil_cs317", "dkhalil_cs317", "6d9d6FHkfI");
+		
+		SQLCalls s = new SQLCalls();
 		try {
 //			
-	
+			System.out.println(s.getPassword("dangv"));
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -41,14 +43,13 @@ public class SQLCalls {
 	{
 		this.USER = User;
 		this.PASS = Pass;
-		DB_URL = "jdbc:mysql://"+ host + ":" + port +  "/" + database + "?user=" + this.USER + "&password=" + PASS + "&useUnicode=true&characterEncoding=UTF-8";
+		//DB_URL = "jdbc:mysql://"+ host + ":" + port +  "/" + database + "?user=" + this.USER + "&password=" + PASS + "&useUnicode=true&characterEncoding=UTF-8";
 	}
 
 	public SQLCalls()
 	{
-		DB_URL = "jdbc:mysql://localhost:3306/players";
 		USER = "root";
-		PASS = "toor";
+		PASS = "Uff.ar.ted07";
 	}
 
 	// add new record
@@ -465,13 +466,13 @@ public class SQLCalls {
 			// STEP 4: Create query
 			stmt = conn.createStatement();
 			String sql;
-			sql = "SELECT Password FROM Account WHERE Username = '" + username + "';";
+			sql = "SELECT password FROM Users WHERE username = '" + username + "';";
 			// STEP 5: Save result
 			ResultSet rs = stmt.executeQuery(sql);
 			rs.next();
 
 			pass_hash = rs.getString("password");
-
+			
 			// STEP 6: Clean-up environment
 			rs.close();
 			stmt.close();
