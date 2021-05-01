@@ -9,6 +9,8 @@ import javafx.stage.Stage;
 
 public class CreateAccountPage {
 	
+	TextField password = new TextField();
+	
 	public void accountPage(Stage stage)
 	{
 		Group group = new Group();
@@ -39,15 +41,15 @@ public class CreateAccountPage {
 	
 	public void passwordBox(Group group)
 	{
-		Label password = new Label("Password:");
-		password.setTranslateX(240);
-		password.setTranslateY(205);
+		Label passwordLabel = new Label("Password:");
+		passwordLabel.setTranslateX(240);
+		passwordLabel.setTranslateY(205);
 		
-		TextField textField = new TextField();
-		textField.setTranslateX(300);
-		textField.setTranslateY(200);
 		
-		group.getChildren().addAll(password, textField);
+		password.setTranslateX(300);
+		password.setTranslateY(200);
+		
+		group.getChildren().addAll(passwordLabel, password);
 	}
 	
 	public void createAccount(Group group)

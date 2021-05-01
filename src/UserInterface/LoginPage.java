@@ -91,33 +91,4 @@ public class LoginPage extends Application{
 		
 		root.getChildren().addAll(password, this.password);
 	}
-/*
-	public void createButton(Group root, Stage stage)
-	{
-	      Button button = new Button();
-	      button.setText("Sign In");
-	      button.setTranslateX(300);
-	      button.setTranslateY(250);
-	      
-	      button.setOnAction(e-> {
-	    	  newScreen(stage);
-	      });
-	      
-	      root.getChildren().add(button);
-	}
-	
-	public void newScreen(Stage stage)
-	{
-		Group group = new Group();
-		Button newButton = new Button("tuttle");
-		newButton.setTranslateX(20);
-		newButton.setTranslateY(20);
-		newButton.setOnAction(e-> System.out.println("I like Tuttles"));
-		group.getChildren().add(newButton);
-		
-		Scene scene = new Scene(group, 500, 500);
-		stage.setTitle("Titties");
-		stage.setScene(scene);
-		stage.show();
-	}*/
 }

@@ -22,6 +22,7 @@ public class TriviaCreatePage {
 		triviaLabels(group);
 		textBoxes(group);
 		submitButton(group);
+		backButton(group, stage);
 		
 		Scene scene = new Scene(group, 700, 500);
 		stage.setTitle("Trivia Creation");
@@ -70,6 +71,12 @@ public class TriviaCreatePage {
 		question3.setTranslateY(188);
 		
 		group.getChildren().addAll(category, question, question1, question2, question3);
+	}
+	
+	public void backButton(Group group, Stage stage)
+	{
+		SettingsPage backButton = new SettingsPage();
+		backButton.backButton(group, stage);
 	}
 	
 	public void submitButton(Group group)
