@@ -1,5 +1,6 @@
 package UserInterface;
 
+import SQL.SQLCalls;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -78,6 +79,12 @@ public class CreateAccountPage {
 		});
 		
 		group.getChildren().add(button);
+		
+	}
+	
+	public void createUser(String password, String username)
+	{
+		SQLCalls sql = new SQLCalls();
 		
 	}
 	
