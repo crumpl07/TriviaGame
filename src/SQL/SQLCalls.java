@@ -48,9 +48,166 @@ public class SQLCalls {
 
 	public SQLCalls()
 	{
+		DB_URL = "jdbc:mysql://localhost:3306/TriviaGame?user=root&password=Uff.ar.ted07&useUnicode=true&characterEncoding=UTF-8";
 		USER = "root";
 		PASS = "Uff.ar.ted07";
 	}
+	
+	public void createAcount(String username, String password)
+	{
+		try 
+		{
+			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+			stmt = conn.createStatement();
+			String sql = "INSERT INTO Users(username, password) VALUES ('" + username +"','" + password + "');";
+			stmt.executeUpdate(sql);
+			System.out.println("Succssful update");
+			stmt.close();
+			conn.close();
+		} 
+		catch (final SQLException se) {se.printStackTrace();}
+		catch (final Exception e) {e.printStackTrace();} 
+		finally { try { if (stmt != null) stmt.close();} catch (final SQLException se2) {}
+		try { if (conn != null) conn.close();} catch (final SQLException se) {se.printStackTrace();}}
+	}
+	
+	public void setScore(String username, int score)
+	{
+		try 
+		{
+			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+			stmt = conn.createStatement();
+			String sql = "UPDATE Users SET score = '" + score +"' WHERE score = '"+ username+ "';";
+			stmt.executeUpdate(sql);
+			System.out.println("Succssful update");
+			stmt.close();
+			conn.close();
+		} 
+		catch (final SQLException se) {se.printStackTrace();}
+		catch (final Exception e) {e.printStackTrace();} 
+		finally { try { if (stmt != null) stmt.close();} catch (final SQLException se2) {}
+		try { if (conn != null) conn.close();} catch (final SQLException se) {se.printStackTrace();}}
+	}
+	
+	public void createQuiz(int id, String category, String title)
+	{
+		try 
+		{
+			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+			stmt = conn.createStatement();
+			String sql = "INSERT INTO Quiz VALUES ('"+id+"','"+category+"','"+title+"');";
+			stmt.executeUpdate(sql);
+			System.out.println("Succssful update");
+			stmt.close();
+			conn.close();
+		} 
+		catch (final SQLException se) {se.printStackTrace();}
+		catch (final Exception e) {e.printStackTrace();} 
+		finally { try { if (stmt != null) stmt.close();} catch (final SQLException se2) {}
+		try { if (conn != null) conn.close();} catch (final SQLException se) {se.printStackTrace();}}
+	}
+	
+	public void createQuestion(int id, String answer, String incA1, String incA2, String incA3, String question)
+	{
+		try 
+		{
+			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+			stmt = conn.createStatement();
+			String sql = "INSERT INTO Question(ID, answer, incorrectAnser1, incorrectAnser2, incorrectAnser3, question) "
+						+ "VALUES ('"+id+"','"+answer+"','"+incA1+"','"+incA2+"','"+incA3+"','"+question+"');";
+			stmt.executeUpdate(sql);
+			System.out.println("Succssful update");
+			stmt.close();
+			conn.close();
+		} 
+		catch (final SQLException se) {se.printStackTrace();}
+		catch (final Exception e) {e.printStackTrace();} 
+		finally { try { if (stmt != null) stmt.close();} catch (final SQLException se2) {}
+		try { if (conn != null) conn.close();} catch (final SQLException se) {se.printStackTrace();}}
+	}
+	
+	
+	public void setCategory(String category, int id)
+	{
+		try 
+		{
+			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+			stmt = conn.createStatement();
+			String sql = "UPDATE Quiz SET category = '"+category+"' WHERE ID = '"+id+"';";
+			stmt.executeUpdate(sql);
+			System.out.println("Succssful update");
+			stmt.close();
+			conn.close();
+		} 
+		catch (final SQLException se) {se.printStackTrace();}
+		catch (final Exception e) {e.printStackTrace();} 
+		finally { try { if (stmt != null) stmt.close();} catch (final SQLException se2) {}
+		try { if (conn != null) conn.close();} catch (final SQLException se) {se.printStackTrace();}}
+	}
+	
+	public void setTitle(String title, int id)
+	{
+		try 
+		{
+			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+			stmt = conn.createStatement();
+			String sql = "UPDATE Quiz SET title = '"+title+"' WHERE ID = '"+id+"';";
+			stmt.executeUpdate(sql);
+			System.out.println("Succssful update");
+			stmt.close();
+			conn.close();
+		} 
+		catch (final SQLException se) {se.printStackTrace();}
+		catch (final Exception e) {e.printStackTrace();} 
+		finally { try { if (stmt != null) stmt.close();} catch (final SQLException se2) {}
+		try { if (conn != null) conn.close();} catch (final SQLException se) {se.printStackTrace();}}
+	}
+	
+	public void setAnswer(String answer, int id)
+	{
+		try 
+		{
+			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+			stmt = conn.createStatement();
+			String sql = "UPDATE Question SET answer = '"+answer+"' WHERE ID = '"+id+"';";
+			stmt.executeUpdate(sql);
+			System.out.println("Succssful update");
+			stmt.close();
+			conn.close();
+		} 
+		catch (final SQLException se) {se.printStackTrace();}
+		catch (final Exception e) {e.printStackTrace();} 
+		finally { try { if (stmt != null) stmt.close();} catch (final SQLException se2) {}
+		try { if (conn != null) conn.close();} catch (final SQLException se) {se.printStackTrace();}}
+	}
+	
+	public void setQuestion(String question, int id)
+	{
+		try 
+		{
+			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+			stmt = conn.createStatement();
+			String sql = "UPDATE Question SET answer = '"+question+"' WHERE ID = '"+id+"';";
+			stmt.executeUpdate(sql);
+			System.out.println("Succssful update");
+			stmt.close();
+			conn.close();
+		} 
+		catch (final SQLException se) {se.printStackTrace();}
+		catch (final Exception e) {e.printStackTrace();} 
+		finally { try { if (stmt != null) stmt.close();} catch (final SQLException se2) {}
+		try { if (conn != null) conn.close();} catch (final SQLException se) {se.printStackTrace();}}
+	}
+	
+	
 
 	// add new record
 	public void newRecord(String username, String password)
@@ -142,24 +299,6 @@ public class SQLCalls {
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
 			stmt = conn.createStatement();
 			String sql = "UPDATE Player SET displayName = '" + displayName + "' WHERE Username = '" + curPlayer + "';";
-			stmt.executeUpdate(sql);
-			System.out.println("Succssful update");
-			stmt.close();
-			conn.close();
-		} 
-		catch (final SQLException se) {se.printStackTrace();}
-		catch (final Exception e) {e.printStackTrace();} 
-		finally { try { if (stmt != null) stmt.close();} catch (final SQLException se2) {}
-		try { if (conn != null) conn.close();} catch (final SQLException se) {se.printStackTrace();}}
-	}
-	
-	public void setPassword(String curPlayer, String password) 
-	{
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-			conn = DriverManager.getConnection(DB_URL, USER, PASS);
-			stmt = conn.createStatement();
-			String sql = "UPDATE Account SET Password = '" + password + "' WHERE Username = '" + curPlayer + "';";
 			stmt.executeUpdate(sql);
 			System.out.println("Succssful update");
 			stmt.close();
