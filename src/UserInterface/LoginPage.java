@@ -91,4 +91,9 @@ public class LoginPage extends Application{
 		
 		root.getChildren().addAll(password, this.password);
 	}
+	
+	public void signInAction(String username, String password, Stage stage)
+	{
+		
+	}
 }

@@ -88,4 +88,8 @@ public class CreateAccountPage {
 		
 	}
 	
+	public class CreateAccountActions {
+		
+	}
+	
 }
