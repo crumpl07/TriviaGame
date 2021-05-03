@@ -1,5 +1,5 @@
 package UserInterface;
-
+import SQL.SQLCalls;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -47,12 +47,17 @@ public class LoginPage extends Application{
 		button.setPrefSize(100, 50);
 		button.relocate(300, 300); 
 		
-		HomePage home = new HomePage();
+
 		
 		button.setOnAction(e-> {
 		//	if() 
 			{
-				home.homePage(stage);
+				try {
+					signInAction(username.getText(), password.getText(), stage);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		
@@ -66,11 +71,11 @@ public class LoginPage extends Application{
 		button.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 12));
 		button.setPrefSize(110, 50);
 		button.relocate(10, 10);
-				
-		CreateAccountPage page = new CreateAccountPage();
 		
 		button.setOnAction(e-> {
+			CreateAccountPage page = new CreateAccountPage();
 			page.accountPage(stage);
+			
 		});
 		
 		root.getChildren().add(button);
@@ -101,8 +106,26 @@ public class LoginPage extends Application{
 		root.getChildren().addAll(password, this.password);
 	}
 	
-	public void signInAction(String username, String password, Stage stage)
+	public void signInAction(String username, String password, Stage stage) throws Exception
 	{
-		
+			HomePage home = new HomePage();
+			SQLCalls sql = new SQLCalls();
+			System.out.println("Username " + username + "\tPassword" + password);
+			
+			try 
+			{
+				if(sql.getPassword(username) == null || sql.getUsername(password) == null)
+				{
+					System.out.println("Not found");
+				}
+				else
+				{
+					home.homePage(stage);
+				}
+			}catch (Exception e1) {
+				// TODO Auto-generated catch block
+				System.out.println("Inccorect Loign Info");
+			}
+			
 	}
 }
