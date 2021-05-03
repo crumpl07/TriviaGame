@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class SQLCalls {
 	// JDBC driver name and database URL
-	public String DB_URL = "jdbc:mysql://localhost:3306/triviagame?user=root&password=Vivtheavidstudent818*&useUnicode=true&characterEncoding=UTF-8";
+	public String DB_URL = "jdbc:mysql://localhost:3306/TriviaGame?user=root&password=Uff.ar.ted07&useUnicode=true&characterEncoding=UTF-8";
 
 	// Database credentials
 	String USER = "root";
@@ -33,10 +33,8 @@ public class SQLCalls {
 			
 			String st = null;
 			int x = 0;
-			s.setAnswer("bob", 5);
-			x = s.getQuestionID("bob");
+			x = s.getHighestID("quiz");
 			System.out.println(x);
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -46,7 +44,7 @@ public class SQLCalls {
 	{
 		DB_URL = "jdbc:mysql://localhost:3306/triviagame?user=root&password=Uff.ar.ted07&useUnicode=true&characterEncoding=UTF-8";
 		USER = "root";
-		PASS = "Vivtheavidstudent818*";
+		PASS = "Uff.ar.ted07";
 	}
 	
 	public void createAcount(String username, String password)
@@ -487,7 +485,7 @@ public class SQLCalls {
 			sql = "SELECT MAX(ID) FROM " + table + ";";
 			ResultSet rs = stmt.executeQuery(sql);
 			rs.next();
-			id = rs.getInt("ID");
+			id = rs.getInt("MAX(ID)");
 			
 			rs.close();
 			stmt.close();
