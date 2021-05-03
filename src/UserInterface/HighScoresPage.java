@@ -1,5 +1,8 @@
 package UserInterface;
 
+import java.util.ArrayList;
+
+import SQL.SQLCalls;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -9,11 +12,14 @@ import javafx.stage.Stage;
 
 public class HighScoresPage {
 	
+	ArrayList<String> hello = new ArrayList<String>();
+	
 	public void ScoresPage(Stage stage)
 	{
 		Group group = new Group();
 		
 		backButton(group, stage);
+		Scores();
 		
 		Scene scene = new Scene(group, 700, 500);
 		stage.setResizable(false);
@@ -38,9 +44,16 @@ public class HighScoresPage {
 		group.getChildren().add(button);
 	}
 	
-	public void getBestScores()
+	public void Scores()
 	{
-		//return a list of the top 10 highest scores
+		
+		SQLCalls sql = new SQLCalls();
+		
+		hello = sql.getHighestScores();
+		for(String x: hello)
+		{
+			System.out.println(x);
+		}
 	}
 	
 }
