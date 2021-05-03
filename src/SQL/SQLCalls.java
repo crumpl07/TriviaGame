@@ -14,7 +14,7 @@ public class SQLCalls {
 
 	// Database credentials
 	String USER = "root";
-	String PASS = "Vivtheavidstudent818*";
+	String PASS = "Uff.ar.ted07";
 
 	Connection conn = null;
 	Statement stmt = null;
@@ -202,7 +202,6 @@ public class SQLCalls {
 		finally { try { if (stmt != null) stmt.close();} catch (final SQLException se2) {}
 		try { if (conn != null) conn.close();} catch (final SQLException se) {se.printStackTrace();}}
 	}
-
 	
 	public String getUsername(String password) throws Exception
 	{
@@ -441,6 +440,51 @@ public class SQLCalls {
 			stmt = conn.createStatement();
 			String sql;
 			sql = "SELECT ID FROM Question WHERE answer = '" + answer + "';";
+			ResultSet rs = stmt.executeQuery(sql);
+			rs.next();
+			id = rs.getInt("ID");
+			
+			rs.close();
+			stmt.close();
+			conn.close();
+
+		} catch (final SQLException se) {
+			// Handle errors for JDBC
+			se.printStackTrace();
+		} catch (final Exception e) {
+			// Handle errors for Class.forName
+			e.printStackTrace();
+		} finally {
+			// finally block used to close resources
+			try {
+				if (stmt != null)
+					stmt.close();
+			} catch (final SQLException se2) {
+			} // nothing we can do
+			try {
+				if (conn != null)
+					conn.close();
+			} catch (final SQLException se) {
+				se.printStackTrace();
+			} // end finally try
+		} // end try
+		return id;
+	}
+	
+	public int getHighestID(String table)
+	{
+		int id = 0;
+		try 
+		{
+
+			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+			System.out.println("Connecting to database...");
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+			System.out.println("Creating statement...");
+			
+			stmt = conn.createStatement();
+			String sql;
+			sql = "SELECT MAX(ID) FROM " + table + ";";
 			ResultSet rs = stmt.executeQuery(sql);
 			rs.next();
 			id = rs.getInt("ID");
