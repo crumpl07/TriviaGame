@@ -13,6 +13,8 @@ import javafx.stage.Stage;
 public class CreateAccountPage {
 	
 	TextField password = new TextField();
+	TextField username = new TextField();
+	TextField reEnterField = new TextField();
 	
 	public void accountPage(Stage stage)
 	{
@@ -20,8 +22,8 @@ public class CreateAccountPage {
 		
 		usernameBox(group);
 		passwordBox(group);
-		createAccount(group);
 		reEnterBox(group);
+		createAccount(group, stage);
 		backButton(group, stage);
 		
 		Scene scene = new Scene(group, 700, 500);
@@ -39,11 +41,11 @@ public class CreateAccountPage {
 		username.relocate(190, 170);
 		username.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 20));
 		
-		TextField textField = new TextField();
-		textField.relocate(300, 173);
-		textField.setFont(Font.font(15));
+
+		this.username.relocate(300, 173);
+		this.username.setFont(Font.font(15));
 		
-		group.getChildren().addAll(username, textField);
+		group.getChildren().addAll(username, this.username);
 	}
 	
 	public void passwordBox(Group group)
@@ -66,14 +68,14 @@ public class CreateAccountPage {
 		reEnterLabel.relocate(101, 266);
 		reEnterLabel.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 20));
 		
-		TextField reEnterField = new TextField();
+
 		reEnterField.relocate(300, 267);
 		reEnterField.setFont(Font.font(15));
 		
 		group.getChildren().addAll(reEnterLabel, reEnterField);
 	}
 	
-	public void createAccount(Group group)
+	public void createAccount(Group group, Stage stage)
 	{
 		Button button = new Button();
 		button.setText("Create Account");
@@ -82,7 +84,15 @@ public class CreateAccountPage {
 		button.relocate(330, 340);
 		
 		button.setOnAction(e-> {
-			System.out.println("Start Playing");
+			if(password.getText().equals(reEnterField.getText()))
+			{
+				try {
+					createUser(password.getText(), username.getText(), stage);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
 		});
 		
 		group.getChildren().add(button);
@@ -103,14 +113,13 @@ public class CreateAccountPage {
 		group.getChildren().add(button);
 	}
 	
-	public void createUser(String password, String username)
+	public void createUser(String password, String username, Stage stage) throws Exception
 	{
 		SQLCalls sql = new SQLCalls();
+		LoginPage page = new LoginPage();
 		
-	}
-	
-	public class CreateAccountActions {
-		
+		sql.createAcount(username, password);
+		page.start(stage);
 	}
 	
 }
