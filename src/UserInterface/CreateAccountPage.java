@@ -6,6 +6,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class CreateAccountPage {
@@ -19,9 +21,12 @@ public class CreateAccountPage {
 		usernameBox(group);
 		passwordBox(group);
 		createAccount(group);
+		reEnterBox(group);
 		backButton(group, stage);
 		
 		Scene scene = new Scene(group, 700, 500);
+		stage.setResizable(false);
+
 		stage.setTitle("Create Account");
 		stage.setScene(scene);
 		stage.show();
@@ -30,12 +35,13 @@ public class CreateAccountPage {
 	public void usernameBox(Group group)
 	{
 		Label username = new Label("Username:");
-		username.setTranslateX(240);
-		username.setTranslateY(175);
+	
+		username.relocate(190, 170);
+		username.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 20));
 		
-		TextField textField = new TextField ();
-		textField.setTranslateX(300);
-		textField.setTranslateY(170);
+		TextField textField = new TextField();
+		textField.relocate(300, 173);
+		textField.setFont(Font.font(15));
 		
 		group.getChildren().addAll(username, textField);
 	}
@@ -43,23 +49,37 @@ public class CreateAccountPage {
 	public void passwordBox(Group group)
 	{
 		Label passwordLabel = new Label("Password:");
-		passwordLabel.setTranslateX(240);
-		passwordLabel.setTranslateY(205);
 		
+		passwordLabel.relocate(197, 218);
+		passwordLabel.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 20));
 		
-		password.setTranslateX(300);
-		password.setTranslateY(200);
+		password.relocate(300, 220);
+		password.setFont(Font.font(15));
 		
 		group.getChildren().addAll(passwordLabel, password);
+	}
+	
+	public void reEnterBox(Group group)
+	{
+		Label reEnterLabel = new Label("Re-enter Password:");
+		
+		reEnterLabel.relocate(101, 266);
+		reEnterLabel.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 20));
+		
+		TextField reEnterField = new TextField();
+		reEnterField.relocate(300, 267);
+		reEnterField.setFont(Font.font(15));
+		
+		group.getChildren().addAll(reEnterLabel, reEnterField);
 	}
 	
 	public void createAccount(Group group)
 	{
 		Button button = new Button();
 		button.setText("Create Account");
-		button.setPrefSize(100, 50);
-		button.setTranslateX(300);
-		button.setTranslateY(250);
+		button.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 12));
+		button.setPrefSize(110, 50);
+		button.relocate(330, 340);
 		
 		button.setOnAction(e-> {
 			System.out.println("Start Playing");
@@ -72,6 +92,8 @@ public class CreateAccountPage {
 	{
 		Button button = new Button();
 		button.setText("Back");
+		button.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 15));
+		button.relocate(10, 10);
 		LoginPage page = new LoginPage();
 		
 		button.setOnAction(e-> {
@@ -79,7 +101,6 @@ public class CreateAccountPage {
 		});
 		
 		group.getChildren().add(button);
-		
 	}
 	
 	public void createUser(String password, String username)

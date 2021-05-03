@@ -6,6 +6,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class LoginPage extends Application{
@@ -23,29 +26,34 @@ public class LoginPage extends Application{
 	      createAccountButton(root, stage);
 
 	      Scene scene = new Scene(root, 700, 500);
+	      scene.setFill(Color.LAVENDER);
+	      stage.setResizable(false);
+
 	      stage.setTitle("Login");
 	      stage.setScene(scene);
 	      stage.show();
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) 
+	{
 		launch(args);
 	}
 	
 	public void signInButton(Group root, Stage stage)
-	{
-		String password, username;
-		
+	{	
 		Button button = new Button();
 		button.setText("Sign In");
+		button.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 15));
 		button.setPrefSize(100, 50);
-		button.setTranslateX(300);
-		button.setTranslateY(250);
+		button.relocate(300, 300); 
 		
 		HomePage home = new HomePage();
 		
 		button.setOnAction(e-> {
-			home.homePage(stage);
+		//	if() 
+			{
+				home.homePage(stage);
+			}
 		});
 		
 		root.getChildren().add(button);
@@ -55,10 +63,10 @@ public class LoginPage extends Application{
 	{
 		Button button = new Button();
 		button.setText("Create Account");
-		button.setPrefSize(100, 50);
-		button.setTranslateX(300);
-		button.setTranslateY(350);
-		
+		button.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 12));
+		button.setPrefSize(110, 50);
+		button.relocate(10, 10);
+				
 		CreateAccountPage page = new CreateAccountPage();
 		
 		button.setOnAction(e-> {
@@ -71,11 +79,11 @@ public class LoginPage extends Application{
 	public void userNameBox(Group root)
 	{
 		Label username = new Label("Username:");
-		username.setTranslateX(240);
-		username.setTranslateY(175);
+		username.relocate(190, 170);
+		username.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 20));
 
-		this.username.setTranslateX(300);
-		this.username.setTranslateY(170);
+		this.username.relocate(300, 173);
+		this.username.setFont(Font.font(15));
 		
 		root.getChildren().addAll(username, this.username);
 	}
@@ -83,11 +91,12 @@ public class LoginPage extends Application{
 	public void passwordBox(Group root)
 	{
 		Label password = new Label("Password:");
-		password.setTranslateX(240);
-		password.setTranslateY(205);
 		
-		this.password.setTranslateX(300);
-		this.password.setTranslateY(200);
+		password.relocate(197, 218);
+		password.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 20));
+		
+		this.password.relocate(300, 220);
+		this.password.setFont(Font.font(15));
 		
 		root.getChildren().addAll(password, this.password);
 	}

@@ -17,6 +17,8 @@ public class SettingsPage {
 		backButton(group, stage);
 		
 		Scene scene = new Scene(group, 700, 500);
+		stage.setResizable(false);
+
 		stage.setTitle("Settings");
 		stage.setScene(scene);
 		stage.show();
