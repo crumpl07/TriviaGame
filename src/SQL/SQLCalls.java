@@ -14,7 +14,7 @@ public class SQLCalls {
 
 	// Database credentials
 	String USER = "root";
-	String PASS = "Uff.ar.ted07";
+	String PASS = "Vivtheavidstudent818*";
 
 	Connection conn = null;
 	Statement stmt = null;

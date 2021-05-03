@@ -41,25 +41,24 @@ public class SettingsPage {
 		group.getChildren().add(button);
 	}
 	
-	public void confirmButton(Group group)
-	{
-		Button confirm = new Button();
-		confirm.setTranslateX(100);
-		confirm.setTranslateY(100);
-		confirm.setText("Confirm Settings");
-		
-		group.getChildren().add(confirm);
-	}
-	
 	public void volumeBar(Group group)
 	{
 		Slider volumeBar = new Slider();
-		volumeBar.setTranslateX(20);
-		volumeBar.setTranslateY(20);
+		volumeBar.relocate(250, 100);
 		volumeBar.setMin(0);
 		volumeBar.setMax(100);
 		volumeBar.setValue(50);
 		
 		group.getChildren().add(volumeBar);
+	}
+	
+	public void confirmButton(Group group)
+	{
+		Button confirm = new Button();
+		confirm.relocate(270, 300);
+		confirm.setText("Confirm Settings");
+		confirm.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 15));
+		
+		group.getChildren().add(confirm);
 	}
 }
