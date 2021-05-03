@@ -4,6 +4,8 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class SettingsPage {
@@ -26,18 +28,17 @@ public class SettingsPage {
 	
 	public void backButton(Group group, Stage stage)
 	{
-		Button back = new Button();
-		back.setTranslateX(0);
-		back.setTranslateY(0);
-		back.setText("Back");
+		Button button = new Button();
+		button.setText("Back");
+		button.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 15));
+		button.relocate(10, 10);
+		HomePage homepage = new HomePage();
 		
-		HomePage page = new HomePage();
-		
-		back.setOnAction(e-> {
-			page.homePage(stage);
+		button.setOnAction(e-> {
+				homepage.homePage(stage);
 		});
 		
-		group.getChildren().addAll(back);
+		group.getChildren().add(button);
 	}
 	
 	public void confirmButton(Group group)

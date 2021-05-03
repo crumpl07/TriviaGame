@@ -5,6 +5,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class TriviaCreatePage {
@@ -77,8 +79,17 @@ public class TriviaCreatePage {
 	
 	public void backButton(Group group, Stage stage)
 	{
-		SettingsPage backButton = new SettingsPage();
-		backButton.backButton(group, stage);
+		Button button = new Button();
+		button.setText("Back");
+		button.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 15));
+		button.relocate(10, 10);
+		HomePage homepage = new HomePage();
+		
+		button.setOnAction(e-> {
+				homepage.homePage(stage);
+		});
+		
+		group.getChildren().add(button);
 	}
 	
 	public void submitButton(Group group)

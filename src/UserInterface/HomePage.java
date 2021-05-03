@@ -18,7 +18,7 @@ public class HomePage {
 	{
 		Group group = new Group();
 		
-		playButton(group);
+		playButton(group, stage);
 		triviaCreationButton(group, stage);
 		highScoresButton(group, stage);
 		settingsButton(group, stage);
@@ -35,13 +35,19 @@ public class HomePage {
 		stage.show();
 	}
 	
-	public void playButton(Group group)
+	public void playButton(Group group, Stage stage)
 	{
 		Button playButton = new Button();
 		playButton.relocate(20, 100);
 		playButton.setPrefSize(200,50);
 		playButton.setText("Play");
 		playButton.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 15));
+		
+		TriviaSelection triviaSelect = new TriviaSelection();
+		
+		playButton.setOnAction(e->{
+			triviaSelect.selectTrivia(stage);
+		});
 		
 		group.getChildren().addAll(playButton);
 	}
@@ -105,8 +111,9 @@ public class HomePage {
 		logOutButton.setText("Log Out");
 		logOutButton.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 15));
 		
+		LoginPage page = new LoginPage();
 		logOutButton.setOnAction(e-> {
-			
+			page.start(stage);
 		});
 		
 		group.getChildren().addAll(logOutButton);
@@ -129,7 +136,7 @@ public class HomePage {
 		ImageView imageView = new ImageView(image);
 		imageView.setFitWidth(320);
 		imageView.setFitHeight(320);
-		imageView.relocate(300, 100);
+		imageView.relocate(300, 150);
 		
 		group.getChildren().addAll(imageView);
 	}
