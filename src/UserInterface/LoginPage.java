@@ -3,9 +3,11 @@ import SQL.SQLCalls;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -32,6 +34,15 @@ public class LoginPage extends Application{
 	      stage.setTitle("Login");
 	      stage.setScene(scene);
 	      stage.show();
+	      
+	      HomePage homepage = new HomePage();
+	      
+	      scene.setOnKeyReleased(e->{
+	    	  if(e.getCode() == KeyCode.Q)
+	    	  {
+	    		  homepage.homePage(stage);
+	    	  }
+	      });
 	}
 	
 	public static void main(String[] args) 
@@ -117,6 +128,10 @@ public class LoginPage extends Application{
 				if(sql.getPassword(username) == null || sql.getUsername(password) == null)
 				{
 					System.out.println("Not found");
+					Alert alert = new Alert(Alert.AlertType.ERROR);
+					alert.setTitle("OOPSIES");
+					alert.setContentText("Incorrect information!");
+					alert.show();
 				}
 				else
 				{
@@ -124,7 +139,7 @@ public class LoginPage extends Application{
 				}
 			}catch (Exception e1) {
 				// TODO Auto-generated catch block
-				System.out.println("Inccorect Loign Info");
+				System.out.println("owo Inccorect Loign Info");
 			}
 			
 	}
