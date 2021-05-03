@@ -533,7 +533,7 @@ public class SQLCalls {
 			
 			stmt = conn.createStatement();
 			String sql;
-			sql = "SELECT score, username FROM Users LIMIT 10;";
+			sql = "SELECT username, score FROM Users LIMIT 10;";
 			ResultSet rs = stmt.executeQuery(sql);
 
 			while(rs.next())
