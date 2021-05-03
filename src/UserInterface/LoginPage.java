@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
@@ -25,6 +26,9 @@ public class LoginPage extends Application{
 	      createAccountButton(root, stage);
 
 	      Scene scene = new Scene(root, 700, 500);
+	      scene.setFill(Color.LAVENDER);
+	      stage.setResizable(false);
+
 	      stage.setTitle("Login");
 	      stage.setScene(scene);
 	      stage.show();

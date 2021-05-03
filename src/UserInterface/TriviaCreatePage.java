@@ -25,6 +25,8 @@ public class TriviaCreatePage {
 		backButton(group, stage);
 		
 		Scene scene = new Scene(group, 700, 500);
+		stage.setResizable(false);
+
 		stage.setTitle("Trivia Creation");
 		stage.setScene(scene);
 		stage.show();

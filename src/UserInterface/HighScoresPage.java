@@ -13,6 +13,8 @@ public class HighScoresPage {
 		back(group,stage);
 		
 		Scene scene = new Scene(group, 700, 500);
+		stage.setResizable(false);
+
 		stage.setTitle("Scores");
 		stage.setScene(scene);
 		stage.show();

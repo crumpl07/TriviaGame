@@ -25,6 +25,8 @@ public class CreateAccountPage {
 		backButton(group, stage);
 		
 		Scene scene = new Scene(group, 700, 500);
+		stage.setResizable(false);
+
 		stage.setTitle("Create Account");
 		stage.setScene(scene);
 		stage.show();
@@ -99,7 +101,6 @@ public class CreateAccountPage {
 		});
 		
 		group.getChildren().add(button);
-		
 	}
 	
 	public void createUser(String password, String username)
