@@ -248,7 +248,7 @@ public class SQLCalls {
 		return username;
 	}
 	
-	public String getPassword(String username)
+	public String getPassword(String username) throws Exception
 	{
 		String password = null;
 		try 
@@ -293,7 +293,7 @@ public class SQLCalls {
 		return password;
 	}
 	
-	public int getScore(String username)
+	public int getScore(String username) throws Exception
 	{
 		int score = 0;
 		try 
@@ -337,7 +337,7 @@ public class SQLCalls {
 		return score;
 	}
 	
-	public String getAnswer(int id)
+	public String getAnswer(int id) throws Exception
 	{
 		String answer = null;
 		try 
@@ -382,7 +382,7 @@ public class SQLCalls {
 		return answer;
 	}
 	
-	public int getQuizID(String title)
+	public int getQuizID(String title) throws Exception
 	{
 		int id = 0;
 		try 
@@ -427,7 +427,7 @@ public class SQLCalls {
 		return id;
 	}
 	
-	public int getQuestionID(String answer)
+	public int getQuestionID(String answer) throws Exception
 	{
 		int id = 0;
 		try 
