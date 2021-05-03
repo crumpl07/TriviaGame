@@ -34,7 +34,7 @@ public class SQLCalls {
 			String st = null;
 			ArrayList<String> hello = new ArrayList<String>();
 			
-			hello = s.getHighestScores();
+			hello = s.getQuizzes();
 			for(String x: hello)
 			{
 				System.out.println(x);
@@ -567,6 +567,54 @@ public class SQLCalls {
 			} // end finally try
 		} // end try
 		return scores;
+	}
+	
+	public ArrayList<String> getQuizzes()
+	{
+		ArrayList<String> quiz = new ArrayList<String>();
+		try 
+		{
+
+			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+			System.out.println("Connecting to database...");
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+			System.out.println("Creating statement...");
+			
+			stmt = conn.createStatement();
+			String sql;
+			sql = "SELECT title FROM Quiz;";
+			ResultSet rs = stmt.executeQuery(sql);
+
+			while(rs.next())
+			{
+				 quiz.add(rs.getString("title")); 
+			}
+
+			rs.close();
+			stmt.close();
+			conn.close();
+
+		} catch (final SQLException se) {
+			// Handle errors for JDBC
+			se.printStackTrace();
+		} catch (final Exception e) {
+			// Handle errors for Class.forName
+			e.printStackTrace();
+		} finally {
+			// finally block used to close resources
+			try {
+				if (stmt != null)
+					stmt.close();
+			} catch (final SQLException se2) {
+			} // nothing we can do
+			try {
+				if (conn != null)
+					conn.close();
+			} catch (final SQLException se) {
+				se.printStackTrace();
+			} // end finally try
+		} // end try
+		return quiz;
 	}
 
 }
