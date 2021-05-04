@@ -616,5 +616,53 @@ public class SQLCalls {
 		} // end try
 		return quiz;
 	}
+	
+	public ArrayList<String> getQuestions(int id)
+	{
+		ArrayList<String> quiz = new ArrayList<String>();
+		try 
+		{
+
+			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+			System.out.println("Connecting to database...");
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+			System.out.println("Creating statement...");
+			
+			stmt = conn.createStatement();
+			String sql;
+			sql = "SELECT question FROM Question;";
+			ResultSet rs = stmt.executeQuery(sql);
+
+			while(rs.next())
+			{
+				 quiz.add(rs.getString("title")); 
+			}
+
+			rs.close();
+			stmt.close();
+			conn.close();
+
+		} catch (final SQLException se) {
+			// Handle errors for JDBC
+			se.printStackTrace();
+		} catch (final Exception e) {
+			// Handle errors for Class.forName
+			e.printStackTrace();
+		} finally {
+			// finally block used to close resources
+			try {
+				if (stmt != null)
+					stmt.close();
+			} catch (final SQLException se2) {
+			} // nothing we can do
+			try {
+				if (conn != null)
+					conn.close();
+			} catch (final SQLException se) {
+				se.printStackTrace();
+			} // end finally try
+		} // end try
+		return quiz;
+	}
 
 }

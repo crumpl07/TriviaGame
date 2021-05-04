@@ -24,15 +24,12 @@ public class TriviaSelection
 		ScrollPane sp = new ScrollPane();
 		VBox vb = new VBox(); 
 		Button addBt = new Button("+");
-		
-		Button quiz = new Quiz("poodles");
-		
-		vb.getChildren().add(quiz);
+	
 		ArrayList<String> quizNames = sql.getQuizzes();
 		
 		for(int i = 0; i < quizNames.size(); i++)
 		{
-			vb.getChildren().add(new Quiz(quizNames.get(i)));
+			vb.getChildren().add(new Quiz(stage, quizNames.get(i)));
 		}
 		
 		sp.relocate(100, 60);
@@ -66,16 +63,17 @@ public class TriviaSelection
 	
 	public class Quiz extends Button
 	{
-		public Quiz(String title)
+		public Quiz(Stage stage, String title)
 		{
 			super(title);
 			
 			this.setStyle("-fx-background-color: lightblue");
 			this.setPrefSize(400, 75);
 			this.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 15));
-
-			this.setOnAction(e->{
 				
+			this.setOnAction(e->{
+				TriviaPlay page = new TriviaPlay();
+				page.triviaPlayPage(stage, title);
 			});
 			
 			this.setOnMouseEntered(e->{
