@@ -1,8 +1,13 @@
 package UserInterface;
 
+import java.util.ArrayList;
+
+import SQL.SQLCalls;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
@@ -13,7 +18,28 @@ public class TriviaSelection
 	{
 		Group group = new Group();
 		
+		SQLCalls sql = new SQLCalls();
 		backButton(group, stage);
+		
+		ScrollPane sp = new ScrollPane();
+		VBox vb = new VBox(); 
+		Button addBt = new Button("+");
+		
+		Button quiz = new Quiz("poodles");
+		
+		vb.getChildren().add(quiz);
+		ArrayList<String> quizNames = sql.getQuizzes();
+		
+		for(int i = 0; i < quizNames.size(); i++)
+		{
+			vb.getChildren().add(new Quiz(quizNames.get(i)));
+		}
+		
+		sp.relocate(100, 60);
+		sp.setContent(vb);
+		sp.setPrefSize(450, 375);
+		
+		group.getChildren().add(sp);
 		
 		Scene scene = new Scene(group, 700, 500);
 		stage.setResizable(false);
@@ -36,5 +62,29 @@ public class TriviaSelection
 		});
 		
 		group.getChildren().add(button);
+	}
+	
+	public class Quiz extends Button
+	{
+		public Quiz(String title)
+		{
+			super(title);
+			
+			this.setStyle("-fx-background-color: lightblue");
+			this.setPrefSize(400, 75);
+			this.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 15));
+
+			this.setOnAction(e->{
+				
+			});
+			
+			this.setOnMouseEntered(e->{
+				this.setStyle("-fx-background-color: skyblue");
+			});
+			
+			this.setOnMouseExited(e->{
+				this.setStyle("-fx-background-color: lightblue");
+			});
+		}
 	}
 }

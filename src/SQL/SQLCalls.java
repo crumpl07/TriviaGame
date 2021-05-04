@@ -90,14 +90,14 @@ public class SQLCalls {
 		try { if (conn != null) conn.close();} catch (final SQLException se) {se.printStackTrace();}}
 	}
 	
-	public void createQuiz(int id, String category, String title)
+	public void createQuiz(int id, String title)
 	{
 		try 
 		{
 			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
 			stmt = conn.createStatement();
-			String sql = "INSERT INTO Quiz VALUES ('"+id+"','"+category+"','"+title+"');";
+			String sql = "INSERT INTO Quiz VALUES ('"+id+"','"+title+"');";
 			stmt.executeUpdate(sql);
 			System.out.println("Succssful update");
 			stmt.close();
