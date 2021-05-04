@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import javafx.scene.layout.Pane;
+
 public class SQLCalls {
 	// JDBC driver name and database URL
 	public String DB_URL = "jdbc:mysql://localhost:3306/TriviaGame?user=root&password=Uff.ar.ted07&useUnicode=true&characterEncoding=UTF-8";
@@ -32,12 +34,12 @@ public class SQLCalls {
 		try {
 			
 			String st = null;
-			ArrayList<String> hello = new ArrayList<String>();
+			ArrayList<Questions> hello = new ArrayList<Questions>();
 			
-			hello = s.getQuizzes();
-			for(String x: hello)
+			hello = s.getQuestions(1);
+			for(Questions x: hello)
 			{
-				System.out.println(x);
+				System.out.println(x.answer);
 			}
 			
 		} catch (Exception e) {
@@ -617,12 +619,12 @@ public class SQLCalls {
 		return quiz;
 	}
 	
-	public ArrayList<String> getQuestions(int id)
+	public ArrayList<Questions> getQuestions(int id)
 	{
-		ArrayList<String> quiz = new ArrayList<String>();
+			ArrayList<Questions> quest = new ArrayList<Questions>();
 		try 
 		{
-
+			
 			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
 			System.out.println("Connecting to database...");
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
@@ -630,12 +632,17 @@ public class SQLCalls {
 			
 			stmt = conn.createStatement();
 			String sql;
-			sql = "SELECT question FROM Question;";
+			sql = "SELECT answer, incorrectAnser1, incorrectAnser2,"
+					+ " incorrectAnser3, question FROM Question WHERE ID = " + id + ";";
 			ResultSet rs = stmt.executeQuery(sql);
 
 			while(rs.next())
 			{
-				 quiz.add(rs.getString("title")); 
+				 quest.add(new Questions(rs.getString("answer"),
+						 				 rs.getString("incorrectAnser1"), 
+						 				 rs.getString("incorrectAnser2"),
+						 				 rs.getString("incorrectAnser3"), 
+						 				 rs.getString("question")));
 			}
 
 			rs.close();
@@ -662,7 +669,7 @@ public class SQLCalls {
 				se.printStackTrace();
 			} // end finally try
 		} // end try
-		return quiz;
+		return quest;
 	}
 
 }
