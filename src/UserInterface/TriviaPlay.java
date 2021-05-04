@@ -22,6 +22,7 @@ public class TriviaPlay {
 	int index = 0;
 	int score = 0;
 	
+	//When user selects quiz they are brought here
 	public void triviaPlayPage(Stage stage, String title, String user)
 	{
 		SQLCalls sql = new SQLCalls();
@@ -39,6 +40,7 @@ public class TriviaPlay {
 		
 		Label titles = new Label(title);
 		
+		//Creates all of the questions and gives them values
 		Label question = new Label(questions.get(index).question);
 		Label answer1 = new Label(questions.get(index).incorrectAnswer1);
 		Label answer2 = new Label(questions.get(index).incorrectAnswer2);
@@ -47,8 +49,7 @@ public class TriviaPlay {
 		
 		ToggleGroup tg = new ToggleGroup();
 		
-		
-		
+		//Toggle buttons
 		RadioButton answer1rb = new RadioButton();
 		answer1rb.setToggleGroup(tg);
 		RadioButton answer2rb = new RadioButton();
@@ -59,7 +60,7 @@ public class TriviaPlay {
 		correctAnswerrb.setToggleGroup(tg);
 		
 		Button nextb = new Button("Next");
-		
+		//Creates a randomizer so the questions get switched around
 		ArrayList<Integer> list = new ArrayList<Integer>();
 		
 		for(int i = 0; i < 4; i++)
@@ -77,6 +78,7 @@ public class TriviaPlay {
 					System.out.println("Hello there");
 				}
 				index++;
+				//Shuffles the questions 
 				Collections.shuffle(list);
 				answer1.relocate(350,200+list.get(0));
 				answer2.relocate(350,200+list.get(1));
@@ -97,7 +99,7 @@ public class TriviaPlay {
 				answer2rb.setSelected(false);
 				answer3rb.setSelected(false);
 				correctAnswerrb.setSelected(false);
-				
+				//Sets the question next nad checks if it is the last question
 				if(index == questions.size() - 1)
 				{
 					nextb.setText("Submit");
@@ -132,14 +134,14 @@ public class TriviaPlay {
 		});
 		
 		Collections.shuffle(list);
-		
+		//Moves the labels around
 		titles.relocate(350,100);
 		question.relocate(350,120);
 		answer1.relocate(350,200+list.get(0));
 		answer2.relocate(350,200+list.get(1));
 		answer3.relocate(350,200+list.get(2));
 		correctAnswer.relocate(350,200+list.get(3));
-		
+		//Moves the answer toggles around
 		answer1rb.relocate(300,200+list.get(0));
 		answer2rb.relocate(300,200+list.get(1));
 		answer3rb.relocate(300,200+list.get(2));

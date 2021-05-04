@@ -16,6 +16,7 @@ public class HighScoresPage {
 	
 	ArrayList<String> hello = new ArrayList<String>();
 	
+	//Creates the scores page which has the high scores of all the users
 	public void ScoresPage(Stage stage, String user)
 	{
 		Group group = new Group();
@@ -34,7 +35,7 @@ public class HighScoresPage {
 		stage.show();
 	}
 
-	
+	//Goes back to home page
 	public void backButton(Group group, Stage stage, String user)
 	{
 		Button button = new Button();
@@ -50,6 +51,7 @@ public class HighScoresPage {
 		group.getChildren().add(button);
 	}
 	
+	//Prints the highscore lablels
 	public void highScoreLabels(Group group)
 	{
 		int x = 320, y = 40;
@@ -88,6 +90,7 @@ public class HighScoresPage {
 		}
 	}
 	
+	//gets the scores and puts thim in a list
 	public void Scores()
 	{
 		SQLCalls sql = new SQLCalls();

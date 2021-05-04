@@ -13,6 +13,11 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
+
+/*
+ * This is the start of the application, upon start the user is brought to the login page.
+ * Quizzes cannot be one question, they break the application
+ */
 public class LoginPage extends Application{
 	
 	TextField username = new TextField();
@@ -50,6 +55,7 @@ public class LoginPage extends Application{
 		launch(args);
 	}
 	
+	//The sign in button 
 	public void signInButton(Group root, Stage stage)
 	{	
 		Button button = new Button();
@@ -57,7 +63,6 @@ public class LoginPage extends Application{
 		button.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 15));
 		button.setPrefSize(100, 50);
 		button.relocate(300, 300); 
-		
 
 		
 		button.setOnAction(e-> {
@@ -75,6 +80,7 @@ public class LoginPage extends Application{
 		root.getChildren().add(button);
 	}
 	
+	//Creates the account button
 	public void createAccountButton(Group root, Stage stage)
 	{
 		Button button = new Button();
@@ -92,6 +98,7 @@ public class LoginPage extends Application{
 		root.getChildren().add(button);
 	}
 	
+	//Creates the user name box
 	public void userNameBox(Group root)
 	{
 		Label username = new Label("Username:");
@@ -104,6 +111,7 @@ public class LoginPage extends Application{
 		root.getChildren().addAll(username, this.username);
 	}
 	
+	//Creates the password box
 	public void passwordBox(Group root)
 	{
 		Label password = new Label("Password:");
@@ -117,12 +125,13 @@ public class LoginPage extends Application{
 		root.getChildren().addAll(password, this.password);
 	}
 	
+	//Creates the sign in action
 	public void signInAction(String username, String password, Stage stage) throws Exception
 	{
 			HomePage home = new HomePage();
 			SQLCalls sql = new SQLCalls();
 			System.out.println("Username " + username + "\tPassword" + password);
-			
+			//Checks if the users name and password are correct before changing 
 			try 
 			{
 				if(sql.getPassword(username) == null || sql.getUsername(password) == null)

@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 
 public class TriviaSelection 
 {
+	//Creates the tivia selection page
 	public void selectTrivia(Stage stage, String user)
 	{
 		Group group = new Group();
@@ -24,14 +25,15 @@ public class TriviaSelection
 		ScrollPane sp = new ScrollPane();
 		VBox vb = new VBox(); 
 		Button addBt = new Button("+");
-	
+		
+		//Creates a list of quzzes from sql
 		ArrayList<String> quizNames = sql.getQuizzes();
 		
 		for(int i = 0; i < quizNames.size(); i++)
 		{
 			vb.getChildren().add(new Quiz(stage, quizNames.get(i), user));
 		}
-		
+		//Makes the buttons in the group
 		sp.relocate(100, 60);
 		sp.setContent(vb);
 		sp.setPrefSize(450, 375);
@@ -46,6 +48,7 @@ public class TriviaSelection
 		stage.show();
 	}
 	
+	//takes the user back to the home page
 	public void backButton(Group group, Stage stage, String user)
 	{
 		Button button = new Button();
@@ -61,6 +64,7 @@ public class TriviaSelection
 		group.getChildren().add(button);
 	}
 	
+	//Class object used to hold the quizzes in the function
 	public class Quiz extends Button
 	{
 		public Quiz(Stage stage, String title, String user)

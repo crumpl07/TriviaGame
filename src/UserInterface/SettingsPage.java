@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 
 public class SettingsPage {
 	
+	//Creates the settings page
 	public void settingsPage(Stage stage, String user)
 	{
 		Group group = new Group();
@@ -29,6 +30,7 @@ public class SettingsPage {
 		stage.show();
 	}
 	
+	//Takes the user back to the home page
 	public void backButton(Group group, Stage stage, String user)
 	{
 		Button button = new Button();
@@ -44,6 +46,7 @@ public class SettingsPage {
 		group.getChildren().add(button);
 	}
 	
+	//Creates the settings volume bar
 	public void volumeBar(Group group)
 	{
 		Slider volumeBar = new Slider();
@@ -55,6 +58,7 @@ public class SettingsPage {
 		group.getChildren().add(volumeBar);
 	}
 	
+	//creates the confirm button
 	public void confirmButton(Group group)
 	{
 		Button confirm = new Button();

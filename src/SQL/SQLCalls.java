@@ -21,13 +21,15 @@ public class SQLCalls {
 	Connection conn = null;
 	Statement stmt = null;
 
-	/*
-	 * Time format for gameplay stats (maybe might need to use if we change from
-	 * double to time stats, shouldn't be a big deal to change in the code)
-	 * 
-	 * DateTimeFormatter gameplayFormat = DateTimeFormatter.ofPattern("HH:mm:ss");
-	 */
+/*
+ * Creates all of the gets and sets for the SQL database
+ * Each function is structured the same with the connection at 
+ * the top followed by a space and the code that manipulates the data
+ * There is another space and then the file returns and closes the
+ * connection
+ */
 	
+	//Used for testing
 	public static void main(String[] args) {
 		
 		SQLCalls s = new SQLCalls();
@@ -47,6 +49,7 @@ public class SQLCalls {
 		}
 	}
 
+	//Constructor for SQL Connection
 	public SQLCalls()
 	{
 		DB_URL = "jdbc:mysql://localhost:3306/triviagame?user=root&password=Uff.ar.ted07&useUnicode=true&characterEncoding=UTF-8";
@@ -54,16 +57,19 @@ public class SQLCalls {
 		PASS = "Uff.ar.ted07";
 	}
 	
+	//Creates an acount for a user
 	public void createAcount(String username, String password)
 	{
 		try 
-		{
+		{	//Connects to the database
 			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
 			stmt = conn.createStatement();
+			
 			String sql = "INSERT INTO Users(ID, username, password, score) VALUES (0,'" + username +"','" + password + "',0);";
 			stmt.executeUpdate(sql);
 			System.out.println("Succssful update");
+			
 			stmt.close();
 			conn.close();
 		} 
@@ -73,18 +79,21 @@ public class SQLCalls {
 		try { if (conn != null) conn.close();} catch (final SQLException se) {se.printStackTrace();}}
 	}
 	
+	//Gets old score and then adds to the new score
 	public void setScore(String username, int score)
 	{
 		try 
-		{
+		{	//Connects to the database
 			int oldScore = getScore(username);
 			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
 			stmt = conn.createStatement();
+			
 			score = score + oldScore;
 			String sql = "UPDATE Users SET score = '" + score +"' WHERE username = '"+ username+ "';";
 			stmt.executeUpdate(sql);
 			System.out.println("Succssful update");
+			
 			stmt.close();
 			conn.close();
 		} 
@@ -94,16 +103,19 @@ public class SQLCalls {
 		try { if (conn != null) conn.close();} catch (final SQLException se) {se.printStackTrace();}}
 	}
 	
+	//Creates a quiz id with unique id
 	public void createQuiz(int id, String title)
 	{
 		try 
-		{
+		{	//Connects to the database
 			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
 			stmt = conn.createStatement();
+			
 			String sql = "INSERT INTO Quiz VALUES ('"+id+"','"+title+"');";
 			stmt.executeUpdate(sql);
 			System.out.println("Succssful update");
+			
 			stmt.close();
 			conn.close();
 		} 
@@ -113,17 +125,20 @@ public class SQLCalls {
 		try { if (conn != null) conn.close();} catch (final SQLException se) {se.printStackTrace();}}
 	}
 	
+	//Creates question in SQL
 	public void createQuestion(int id, String answer, String incA1, String incA2, String incA3, String question)
 	{
 		try 
-		{
+		{	//Connects to the database
 			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
 			stmt = conn.createStatement();
+			
 			String sql = "INSERT INTO Question(ID, answer, incorrectAnser1, incorrectAnser2, incorrectAnser3, question) "
 						+ "VALUES ('"+id+"','"+answer+"','"+incA1+"','"+incA2+"','"+incA3+"','"+question+"');";
 			stmt.executeUpdate(sql);
 			System.out.println("Succssful update");
+			
 			stmt.close();
 			conn.close();
 		} 
@@ -133,36 +148,19 @@ public class SQLCalls {
 		try { if (conn != null) conn.close();} catch (final SQLException se) {se.printStackTrace();}}
 	}
 	
-	
-	public void setCategory(String category, int id)
-	{
-		try 
-		{
-			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-			conn = DriverManager.getConnection(DB_URL, USER, PASS);
-			stmt = conn.createStatement();
-			String sql = "UPDATE Quiz SET category = '"+category+"' WHERE ID = '"+id+"';";
-			stmt.executeUpdate(sql);
-			System.out.println("Succssful update");
-			stmt.close();
-			conn.close();
-		} 
-		catch (final SQLException se) {se.printStackTrace();}
-		catch (final Exception e) {e.printStackTrace();} 
-		finally { try { if (stmt != null) stmt.close();} catch (final SQLException se2) {}
-		try { if (conn != null) conn.close();} catch (final SQLException se) {se.printStackTrace();}}
-	}
-	
+	//Sets title of the quiz given an id
 	public void setTitle(String title, int id)
 	{
 		try 
-		{
+		{	//Connects to the database
 			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
 			stmt = conn.createStatement();
+			
 			String sql = "UPDATE Quiz SET title = '"+title+"' WHERE ID = '"+id+"';";
 			stmt.executeUpdate(sql);
 			System.out.println("Succssful update");
+			
 			stmt.close();
 			conn.close();
 		} 
@@ -172,15 +170,18 @@ public class SQLCalls {
 		try { if (conn != null) conn.close();} catch (final SQLException se) {se.printStackTrace();}}
 	}
 	
+	//Sets the answer given the id
 	public void setAnswer(String answer, int id)
 	{
 		try 
-		{
+		{	//Connects to the database
 			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
 			stmt = conn.createStatement();
+			
 			String sql = "UPDATE Question SET answer = '"+ answer +"' WHERE ID = '"+ id +"';";
 			stmt.executeUpdate(sql);
+			
 			System.out.println("Succssful update");
 			stmt.close();
 			conn.close();
@@ -191,16 +192,19 @@ public class SQLCalls {
 		try { if (conn != null) conn.close();} catch (final SQLException se) {se.printStackTrace();}}
 	}
 	
+	//Sets the question given the id 
 	public void setQuestion(String question, int id)
 	{
 		try 
-		{
+		{	//Connects to the database
 			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
 			stmt = conn.createStatement();
+			
 			String sql = "UPDATE Question SET question = '"+question+"' WHERE ID = '"+id+"';";
 			stmt.executeUpdate(sql);
 			System.out.println("Succssful update");
+			
 			stmt.close();
 			conn.close();
 		} 
@@ -210,11 +214,12 @@ public class SQLCalls {
 		try { if (conn != null) conn.close();} catch (final SQLException se) {se.printStackTrace();}}
 	}
 	
+	//Gets username given a password
 	public String getUsername(String password) throws Exception
 	{
 		String username = null;
 		try 
-		{
+		{	//Connects to the database
 			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
 			System.out.println("Connecting to database...");
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
@@ -254,12 +259,13 @@ public class SQLCalls {
 		return username;
 	}
 	
+	//Gets password given the username
 	public String getPassword(String username) throws Exception
 	{
 		String password = null;
 		try 
 		{
-
+			//Connects to the database
 			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
 			System.out.println("Connecting to database...");
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
@@ -299,11 +305,12 @@ public class SQLCalls {
 		return password;
 	}
 	
+	//Gets the score given the username
 	public int getScore(String username) throws Exception
 	{
 		int score = 0;
 		try 
-		{
+		{	//Connects to the database
 			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
 			System.out.println("Connecting to database...");
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
@@ -343,12 +350,13 @@ public class SQLCalls {
 		return score;
 	}
 	
+	//Gets the answer given the id of the problem
 	public String getAnswer(int id) throws Exception
 	{
 		String answer = null;
 		try 
 		{
-
+			//Connects to the database
 			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
 			System.out.println("Connecting to database...");
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
@@ -388,12 +396,13 @@ public class SQLCalls {
 		return answer;
 	}
 	
+	//Gets the quiz id given the title of the quiz
 	public int getQuizID(String title) throws Exception
 	{
 		int id = 0;
 		try 
 		{
-
+			//Connects to the database
 			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
 			System.out.println("Connecting to database...");
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
@@ -433,12 +442,13 @@ public class SQLCalls {
 		return id;
 	}
 	
+	//Gets the question ID given the answer
 	public int getQuestionID(String answer) throws Exception
 	{
 		int id = 0;
 		try 
 		{
-
+			//Connects to the database
 			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
 			System.out.println("Connecting to database...");
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
@@ -478,6 +488,7 @@ public class SQLCalls {
 		return id;
 	}
 	
+	//Gets the top 10 rows from sql given the table
 	public int getHighestID(String table)
 	{
 		int id = 0;
@@ -523,6 +534,7 @@ public class SQLCalls {
 		return id;
 	}
 	
+	//Gets the highest scores for all users 
 	public ArrayList<String> getHighestScores()
 	{
 		ArrayList<String> scores = new ArrayList<String>();
@@ -573,6 +585,7 @@ public class SQLCalls {
 		return scores;
 	}
 	
+	//gets the quizzes to populate the trivia select page
 	public ArrayList<String> getQuizzes()
 	{
 		ArrayList<String> quiz = new ArrayList<String>();
@@ -621,6 +634,7 @@ public class SQLCalls {
 		return quiz;
 	}
 	
+	//Gets the questions for the quizzes given the id
 	public ArrayList<Questions> getQuestions(int id)
 	{
 			ArrayList<Questions> quest = new ArrayList<Questions>();

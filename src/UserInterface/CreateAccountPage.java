@@ -17,6 +17,7 @@ public class CreateAccountPage {
 	TextField username = new TextField();
 	TextField reEnterField = new TextField();
 	
+	//Creates the account page and sets up buttons
 	public void accountPage(Stage stage)
 	{
 		Group group = new Group();
@@ -115,6 +116,7 @@ public class CreateAccountPage {
 		group.getChildren().add(button);
 	}
 	
+	//Calls sql class and creates the account given the username and password
 	public void createUser(String password, String username, Stage stage) throws Exception
 	{
 		SQLCalls sql = new SQLCalls();

@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 
 public class HomePage {
 	
+	//Home page of the game
 	public void homePage(Stage stage, String user)
 	{
 		Group group = new Group();
@@ -38,6 +39,7 @@ public class HomePage {
 		stage.show();
 	}
 	
+	//Play button to play the game
 	public void playButton(Group group, Stage stage, String user)
 	{
 		Button playButton = new Button();
@@ -55,6 +57,7 @@ public class HomePage {
 		group.getChildren().addAll(playButton);
 	}
 	
+	//Takes the user to the creation page
 	public void triviaCreationButton(Group group, Stage stage, String user)
 	{
 		Button triviaButton = new Button();
@@ -72,6 +75,7 @@ public class HomePage {
 		group.getChildren().addAll(triviaButton);
 	}
 	
+	//Takes the users to high scores page
 	public void highScoresButton(Group group, Stage stage, String user)
 	{
 		Button scoresButton = new Button();
@@ -91,6 +95,7 @@ public class HomePage {
 		group.getChildren().addAll(scoresButton);
 	}
 	
+	//Takes the user to the settings page
 	public void settingsButton(Group group, Stage stage, String user)
 	{
 		Button settingsButton = new Button();
@@ -108,6 +113,7 @@ public class HomePage {
 		group.getChildren().addAll(settingsButton);
 	}
 	
+	//takes the user to back to the login page
 	public void logOutButton(Group group, Stage stage)
 	{
 		Button logOutButton = new Button();
@@ -124,6 +130,7 @@ public class HomePage {
 		group.getChildren().addAll(logOutButton);
 	}
 	
+	//Creates the label for the game
 	public void triviaGameLabel(Group group)
 	{
 		Label triviaGame = new Label("TRIVIA\nGAME");
@@ -135,6 +142,7 @@ public class HomePage {
 		group.getChildren().addAll(triviaGame);
 	}
 	
+	//Creates the question mark
 	public void image(Group group)
 	{
 		Image image = new Image("question_mark.png");
@@ -146,6 +154,7 @@ public class HomePage {
 		group.getChildren().addAll(imageView);
 	}
 	
+	//Gets best scores 
 	public void getBestScores()
 	{
 		//return a list of the top 10 highest scores
