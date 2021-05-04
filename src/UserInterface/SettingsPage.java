@@ -13,13 +13,13 @@ import javafx.stage.Stage;
 
 public class SettingsPage {
 	
-	public void settingsPage(Stage stage)
+	public void settingsPage(Stage stage, String user)
 	{
 		Group group = new Group();
 		
 		volumeBar(group);
 		confirmButton(group);
-		backButton(group, stage);
+		backButton(group, stage, user);
 		
 		Scene scene = new Scene(group, 700, 500);
 		stage.setResizable(false);
@@ -29,7 +29,7 @@ public class SettingsPage {
 		stage.show();
 	}
 	
-	public void backButton(Group group, Stage stage)
+	public void backButton(Group group, Stage stage, String user)
 	{
 		Button button = new Button();
 		button.setText("Back");
@@ -38,7 +38,7 @@ public class SettingsPage {
 		HomePage homepage = new HomePage();
 		
 		button.setOnAction(e-> {
-				homepage.homePage(stage);
+				homepage.homePage(stage, user);
 		});
 		
 		group.getChildren().add(button);

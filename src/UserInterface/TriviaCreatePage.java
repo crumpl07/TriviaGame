@@ -21,7 +21,7 @@ public class TriviaCreatePage {
 	ArrayList<Question> questions = new ArrayList<Question>();
 	TextField title = new TextField();
 	
-	public void createTrivia(Stage stage)
+	public void createTrivia(Stage stage, String user)
 	{
 		Group group = new Group();
 		
@@ -54,7 +54,7 @@ public class TriviaCreatePage {
 		group.getChildren().addAll(sp, addBt, title, triviaTitle);
 		
 		submitButton(group);
-		backButton(group, stage);
+		backButton(group, stage, user);
 		
 		Scene scene = new Scene(group, 700, 500);
 		stage.setResizable(false);
@@ -65,7 +65,7 @@ public class TriviaCreatePage {
 		stage.show();
 	}
 	
-	public void backButton(Group group, Stage stage)
+	public void backButton(Group group, Stage stage, String user)
 	{
 		Button button = new Button();
 		button.setText("Back");
@@ -74,7 +74,7 @@ public class TriviaCreatePage {
 		HomePage homepage = new HomePage();
 		
 		button.setOnAction(e-> {
-				homepage.homePage(stage);
+				homepage.homePage(stage, user);
 		});
 		
 		group.getChildren().add(button);

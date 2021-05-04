@@ -20,7 +20,7 @@ public class TriviaPlay {
 	int index = 0;
 	int score = 0;
 	
-	public void triviaPlayPage(Stage stage, String title)
+	public void triviaPlayPage(Stage stage, String title, String user)
 	{
 		SQLCalls sql = new SQLCalls();
 
@@ -105,9 +105,11 @@ public class TriviaPlay {
 						{
 							score++;
 						}
+						
 						Alert alert = new Alert(Alert.AlertType.INFORMATION);
 						alert.setTitle("Submitted Quiz");
 						alert.setContentText("Your score is " + score);
+						sql.setScore(user, score);
 						alert.show();
 						
 					});
