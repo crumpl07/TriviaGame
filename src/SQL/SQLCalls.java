@@ -77,9 +77,11 @@ public class SQLCalls {
 	{
 		try 
 		{
+			int oldScore = getScore(username);
 			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
 			stmt = conn.createStatement();
+			score = score + oldScore;
 			String sql = "UPDATE Users SET score = '" + score +"' WHERE username = '"+ username+ "';";
 			stmt.executeUpdate(sql);
 			System.out.println("Succssful update");

@@ -12,6 +12,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class TriviaPlay {
@@ -45,7 +47,7 @@ public class TriviaPlay {
 		
 		ToggleGroup tg = new ToggleGroup();
 		
-		Button back = new Button();
+		
 		
 		RadioButton answer1rb = new RadioButton();
 		answer1rb.setToggleGroup(tg);
@@ -111,6 +113,18 @@ public class TriviaPlay {
 						alert.setContentText("Your score is " + score);
 						sql.setScore(user, score);
 						alert.show();
+						
+						Button button = new Button();
+						button.setText("Back");
+						button.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 15));
+						button.relocate(10, 10);
+						HomePage homepage = new HomePage();
+						
+						button.setOnAction(d-> {
+								homepage.homePage(stage, user);
+						});
+						
+						group.getChildren().add(button);
 						
 					});
 				}
