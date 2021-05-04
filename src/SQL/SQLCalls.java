@@ -671,5 +671,4 @@ public class SQLCalls {
 		} // end try
 		return quest;
 	}
-
 }
