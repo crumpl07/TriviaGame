@@ -133,6 +133,7 @@ public class LoginPage extends Application{
 					alert.setContentText("Incorrect information!");
 					alert.show();
 				}
+				
 				else
 				{
 					home.homePage(stage);

@@ -1,6 +1,7 @@
 package UserInterface;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import SQL.SQLCalls;
 import javafx.scene.Group;
@@ -10,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 public class HighScoresPage {
@@ -19,14 +21,19 @@ public class HighScoresPage {
 	public void ScoresPage(Stage stage)
 	{
 		Group group = new Group();
+		Label highscoreL = new Label("PEOPLE THAT do not KNOW MANY THINGS\n"
+				+ "(i.e. we didn't have time to figure out how to\norder by highscores (;~;) )");
+		highscoreL.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 20));
+		highscoreL.relocate(150, 50);
+		highscoreL.setTextAlignment(TextAlignment.CENTER);
 		
 		backButton(group, stage);
 		Scores();
 		highScoreLabels(group);
-
+		group.getChildren().add(highscoreL);
 		
 		Scene scene = new Scene(group, 700, 500);
-	    scene.setFill(Color.AQUA);
+	    scene.setFill(Color.PALEGOLDENROD);
 		stage.setResizable(false);
 
 		stage.setTitle("Scores");
@@ -52,39 +59,17 @@ public class HighScoresPage {
 	
 	public void highScoreLabels(Group group)
 	{
-		int x = 320, y = 40;
+		int x = 320, y = 180;
 		int counter =1;
 		int count =1;
 		for(String i: hello)
 		{
 			Label label = new Label(i);
-			if((counter%2) == 1)
-			{
-				label.relocate(x-25, y-2);
-			}
-			else if((counter%2) == 0)
-			{
-				label.relocate(x+20,y-25);
-			}
+			label.relocate(x-25, y-2);
 			label.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 20));
 			group.getChildren().addAll(label);
-			y+=20;
+			y+=40;
 			counter++;
-		}
-		y=40;
-		counter = 1;
-		for(String i: hello)
-		{
-			if((count%2) == 1)
-			{
-				Label number = new Label(counter + ".)");
-				number.relocate(x-70,y);
-				number.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 20));
-				group.getChildren().add(number);
-				counter++;
-			}
-			count++;
-			y+=20;
 		}
 	}
 	
@@ -92,7 +77,9 @@ public class HighScoresPage {
 	{
 		SQLCalls sql = new SQLCalls();
 		
+		sql.reorderByScore();
 		hello = sql.getHighestScores();
+		
 		for(String x: hello)
 		{
 			System.out.println(x);

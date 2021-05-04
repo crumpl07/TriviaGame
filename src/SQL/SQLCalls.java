@@ -20,13 +20,6 @@ public class SQLCalls {
 
 	Connection conn = null;
 	Statement stmt = null;
-
-	/*
-	 * Time format for gameplay stats (maybe might need to use if we change from
-	 * double to time stats, shouldn't be a big deal to change in the code)
-	 * 
-	 * DateTimeFormatter gameplayFormat = DateTimeFormatter.ofPattern("HH:mm:ss");
-	 */
 	
 	public static void main(String[] args) {
 		
@@ -82,6 +75,25 @@ public class SQLCalls {
 			stmt = conn.createStatement();
 			String sql = "UPDATE Users SET score = '" + score +"' WHERE username = '"+ username+ "';";
 			stmt.executeUpdate(sql);
+			System.out.println("Succssful update");
+			stmt.close();
+			conn.close();
+		} 
+		catch (final SQLException se) {se.printStackTrace();}
+		catch (final Exception e) {e.printStackTrace();} 
+		finally { try { if (stmt != null) stmt.close();} catch (final SQLException se2) {}
+		try { if (conn != null) conn.close();} catch (final SQLException se) {se.printStackTrace();}}
+	}
+	
+	public void reorderByScore()
+	{
+		try 
+		{
+			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+			stmt = conn.createStatement();
+			String sql = "SELECT * FROM Users ORDER BY score DESC;";
+			stmt.executeQuery(sql);
 			System.out.println("Succssful update");
 			stmt.close();
 			conn.close();
@@ -535,13 +547,12 @@ public class SQLCalls {
 			
 			stmt = conn.createStatement();
 			String sql;
-			sql = "SELECT username, score FROM Users LIMIT 10;";
+			sql = "SELECT score, username FROM Users LIMIT 10;";
 			ResultSet rs = stmt.executeQuery(sql);
 
 			while(rs.next())
 			{
-				 scores.add(rs.getString("score")); 
-				 scores.add(rs.getString("username"));
+				 scores.add(rs.getString("score") + "  |  " + rs.getString("username")); 
 			}
 
 			rs.close();

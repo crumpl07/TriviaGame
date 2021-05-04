@@ -109,9 +109,10 @@ public class TriviaCreatePage {
 		group.getChildren().addAll(submitButton);
 	}
 	
+	//this allows us to freely create as many questions as we want
 	public class Question extends Pane
 	{
-		
+		//creates text fields for 
 		public TextField questionTf = new TextField();
 		public TextField answer1Tf = new TextField();
 		public TextField answer2Tf = new TextField();
