@@ -10,11 +10,11 @@ import java.util.ArrayList;
 
 public class SQLCalls {
 	// JDBC driver name and database URL
-	public String DB_URL = "jdbc:mysql://localhost:3306/triviagame?user=root&password=Vivtheavidstudent818*&useUnicode=true&characterEncoding=UTF-8";
+	public String DB_URL = "jdbc:mysql://localhost:3306/TriviaGame?user=root&password=Uff.ar.ted07&useUnicode=true&characterEncoding=UTF-8";
 
 	// Database credentials
 	String USER = "root";
-	String PASS = "Vivtheavidstudent818*";
+	String PASS = "Uff.ar.ted07";
 
 	Connection conn = null;
 	Statement stmt = null;
@@ -32,10 +32,13 @@ public class SQLCalls {
 		try {
 			
 			String st = null;
-			int x = 0;
-			s.setAnswer("bob", 5);
-			x = s.getQuestionID("bob");
-			System.out.println(x);
+			ArrayList<String> hello = new ArrayList<String>();
+			
+			hello = s.getQuizzes();
+			for(String x: hello)
+			{
+				System.out.println(x);
+			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -46,7 +49,7 @@ public class SQLCalls {
 	{
 		DB_URL = "jdbc:mysql://localhost:3306/triviagame?user=root&password=Uff.ar.ted07&useUnicode=true&characterEncoding=UTF-8";
 		USER = "root";
-		PASS = "Vivtheavidstudent818*";
+		PASS = "Uff.ar.ted07";
 	}
 	
 	public void createAcount(String username, String password)
@@ -87,14 +90,14 @@ public class SQLCalls {
 		try { if (conn != null) conn.close();} catch (final SQLException se) {se.printStackTrace();}}
 	}
 	
-	public void createQuiz(int id, String category, String title)
+	public void createQuiz(int id, String title)
 	{
 		try 
 		{
 			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
 			stmt = conn.createStatement();
-			String sql = "INSERT INTO Quiz VALUES ('"+id+"','"+category+"','"+title+"');";
+			String sql = "INSERT INTO Quiz VALUES ('"+id+"','"+title+"');";
 			stmt.executeUpdate(sql);
 			System.out.println("Succssful update");
 			stmt.close();
@@ -202,7 +205,6 @@ public class SQLCalls {
 		finally { try { if (stmt != null) stmt.close();} catch (final SQLException se2) {}
 		try { if (conn != null) conn.close();} catch (final SQLException se) {se.printStackTrace();}}
 	}
-
 	
 	public String getUsername(String password) throws Exception
 	{
@@ -470,6 +472,149 @@ public class SQLCalls {
 			} // end finally try
 		} // end try
 		return id;
+	}
+	
+	public int getHighestID(String table)
+	{
+		int id = 0;
+		try 
+		{
+
+			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+			System.out.println("Connecting to database...");
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+			System.out.println("Creating statement...");
+			
+			stmt = conn.createStatement();
+			String sql;
+			sql = "SELECT MAX(ID) FROM " + table + ";";
+			ResultSet rs = stmt.executeQuery(sql);
+			rs.next();
+			id = rs.getInt("MAX(ID)");
+			
+			rs.close();
+			stmt.close();
+			conn.close();
+
+		} catch (final SQLException se) {
+			// Handle errors for JDBC
+			se.printStackTrace();
+		} catch (final Exception e) {
+			// Handle errors for Class.forName
+			e.printStackTrace();
+		} finally {
+			// finally block used to close resources
+			try {
+				if (stmt != null)
+					stmt.close();
+			} catch (final SQLException se2) {
+			} // nothing we can do
+			try {
+				if (conn != null)
+					conn.close();
+			} catch (final SQLException se) {
+				se.printStackTrace();
+			} // end finally try
+		} // end try
+		return id;
+	}
+	
+	public ArrayList<String> getHighestScores()
+	{
+		ArrayList<String> scores = new ArrayList<String>();
+		
+		try 
+		{
+
+			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+			System.out.println("Connecting to database...");
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+			System.out.println("Creating statement...");
+			
+			stmt = conn.createStatement();
+			String sql;
+			sql = "SELECT username, score FROM Users LIMIT 10;";
+			ResultSet rs = stmt.executeQuery(sql);
+
+			while(rs.next())
+			{
+				 scores.add(rs.getString("score")); 
+				 scores.add(rs.getString("username"));
+			}
+
+			rs.close();
+			stmt.close();
+			conn.close();
+
+		} catch (final SQLException se) {
+			// Handle errors for JDBC
+			se.printStackTrace();
+		} catch (final Exception e) {
+			// Handle errors for Class.forName
+			e.printStackTrace();
+		} finally {
+			// finally block used to close resources
+			try {
+				if (stmt != null)
+					stmt.close();
+			} catch (final SQLException se2) {
+			} // nothing we can do
+			try {
+				if (conn != null)
+					conn.close();
+			} catch (final SQLException se) {
+				se.printStackTrace();
+			} // end finally try
+		} // end try
+		return scores;
+	}
+	
+	public ArrayList<String> getQuizzes()
+	{
+		ArrayList<String> quiz = new ArrayList<String>();
+		try 
+		{
+
+			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+			System.out.println("Connecting to database...");
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+			System.out.println("Creating statement...");
+			
+			stmt = conn.createStatement();
+			String sql;
+			sql = "SELECT title FROM Quiz;";
+			ResultSet rs = stmt.executeQuery(sql);
+
+			while(rs.next())
+			{
+				 quiz.add(rs.getString("title")); 
+			}
+
+			rs.close();
+			stmt.close();
+			conn.close();
+
+		} catch (final SQLException se) {
+			// Handle errors for JDBC
+			se.printStackTrace();
+		} catch (final Exception e) {
+			// Handle errors for Class.forName
+			e.printStackTrace();
+		} finally {
+			// finally block used to close resources
+			try {
+				if (stmt != null)
+					stmt.close();
+			} catch (final SQLException se2) {
+			} // nothing we can do
+			try {
+				if (conn != null)
+					conn.close();
+			} catch (final SQLException se) {
+				se.printStackTrace();
+			} // end finally try
+		} // end try
+		return quiz;
 	}
 
 }

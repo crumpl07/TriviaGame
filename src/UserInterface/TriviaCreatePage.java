@@ -2,6 +2,7 @@ package UserInterface;
 
 import java.util.ArrayList;
 
+import SQL.SQLCalls;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -18,18 +19,18 @@ import javafx.stage.Stage;
 public class TriviaCreatePage {
 	
 	ArrayList<Question> questions = new ArrayList<Question>();
-	TextField category = new TextField();
+	TextField title = new TextField();
 	
 	public void createTrivia(Stage stage)
 	{
 		Group group = new Group();
 		
-		Label triviaCategory = new Label("Trivia Category: ");
-		triviaCategory.relocate(110, 10);
-		triviaCategory.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 15));
-		category.relocate(235, 10);
-		category.setPrefWidth(400);
-		category.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 10));
+		Label triviaTitle = new Label("Trivia Title: ");
+		triviaTitle.relocate(110, 25);
+		triviaTitle.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 15));
+		title.relocate(235, 25);
+		title.setPrefWidth(400);
+		title.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 10));
 		
 		ScrollPane sp = new ScrollPane();
 		VBox vb = new VBox(); 
@@ -50,7 +51,7 @@ public class TriviaCreatePage {
 			vb.getChildren().add(questions.get(questions.size()-1)); 
 		});
 		
-		group.getChildren().addAll(sp, addBt, triviaCategory, category);
+		group.getChildren().addAll(sp, addBt, title, triviaTitle);
 		
 		submitButton(group);
 		backButton(group, stage);
@@ -82,13 +83,28 @@ public class TriviaCreatePage {
 	public void submitButton(Group group)
 	{
 		Button submitButton = new Button();
+		int key = 0;
 		
 		submitButton.setText("Create Quiz");
 		submitButton.relocate(270, 450);
 		submitButton.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 15));
+		SQLCalls sql = new SQLCalls();
+		
 		
 		submitButton.setOnAction(e->{
 			//All the relevant Strings are in the Array List "questions"
+			
+			for(int i = 0; i < questions.size(); i++)
+			{
+				sql.createQuiz(sql.getHighestID("quiz")+1, title.getText());
+				sql.createQuestion (sql.getHighestID("quiz"),
+									questions.get(i).answer1Tf.getText(),
+									questions.get(i).answer2Tf.getText(),
+									questions.get(i).answer3Tf.getText(),
+									questions.get(i).corrAnswerTf.getText(),
+									questions.get(i).questionTf.getText());
+			}
+			System.out.println("Added Questions");
 		});
 		
 		group.getChildren().addAll(submitButton);
