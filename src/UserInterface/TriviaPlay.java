@@ -1,4 +1,8 @@
 package UserInterface;
+import java.util.ArrayList;
+
+import SQL.Questions;
+import SQL.SQLCalls;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -8,8 +12,14 @@ import javafx.stage.Stage;
 
 public class TriviaPlay {
 	
+	ArrayList<Questions> questions;
+	
 	public void triviaPlayPage(Stage stage, String title)
 	{
+		SQLCalls sql = new SQLCalls();
+		int id = 0;
+		questions = sql.getQuestions(id);
+		
 		Group group = new Group();
 		
 		Label titles = new Label(title);
