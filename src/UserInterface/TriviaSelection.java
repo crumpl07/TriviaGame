@@ -8,8 +8,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class TriviaSelection 
@@ -17,13 +19,16 @@ public class TriviaSelection
 	public void selectTrivia(Stage stage)
 	{
 		Group group = new Group();
-		
+		Text selectTxt = new Text("Choose a quiz! Test your knowledge!");
+
 		SQLCalls sql = new SQLCalls();
 		backButton(group, stage);
 		
+		selectTxt.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 22));
+		selectTxt.relocate(165, 20);
+		
 		ScrollPane sp = new ScrollPane();
 		VBox vb = new VBox(); 
-		Button addBt = new Button("+");
 	
 		ArrayList<String> quizNames = sql.getQuizzes();
 		
@@ -32,15 +37,15 @@ public class TriviaSelection
 			vb.getChildren().add(new Quiz(stage, quizNames.get(i)));
 		}
 		
-		sp.relocate(100, 60);
+		sp.relocate(150, 70);
 		sp.setContent(vb);
-		sp.setPrefSize(450, 375);
+		sp.setPrefSize(417, 375);
 		
-		group.getChildren().add(sp);
+		group.getChildren().addAll(sp, selectTxt);
 		
 		Scene scene = new Scene(group, 700, 500);
 		stage.setResizable(false);
-
+		scene.setFill(Color.MISTYROSE);
 		stage.setTitle("Select Trivia");
 		stage.setScene(scene);
 		stage.show();
@@ -67,7 +72,7 @@ public class TriviaSelection
 		{
 			super(title);
 			
-			this.setStyle("-fx-background-color: lightblue");
+			this.setStyle("-fx-background-color: lightblue; -fx-border-color:black");
 			this.setPrefSize(400, 75);
 			this.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 15));
 				
@@ -77,11 +82,11 @@ public class TriviaSelection
 			});
 			
 			this.setOnMouseEntered(e->{
-				this.setStyle("-fx-background-color: skyblue");
+				this.setStyle("-fx-background-color: skyblue; -fx-border-color:black");
 			});
 			
 			this.setOnMouseExited(e->{
-				this.setStyle("-fx-background-color: lightblue");
+				this.setStyle("-fx-background-color: lightblue; -fx-border-color:black");
 			});
 		}
 	}

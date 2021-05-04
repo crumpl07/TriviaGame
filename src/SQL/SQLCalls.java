@@ -10,11 +10,11 @@ import java.util.ArrayList;
 
 public class SQLCalls {
 	// JDBC driver name and database URL
-	public String DB_URL = "jdbc:mysql://localhost:3306/TriviaGame?user=root&password=Uff.ar.ted07&useUnicode=true&characterEncoding=UTF-8";
+	public String DB_URL = "jdbc:mysql://localhost:3306/triviagame?user=root&password=Vivtheavidstudent818*&useUnicode=true&characterEncoding=UTF-8";
 
 	// Database credentials
 	String USER = "root";
-	String PASS = "Uff.ar.ted07";
+	String PASS = "Vivtheavidstudent818*";
 
 	Connection conn = null;
 	Statement stmt = null;
@@ -47,9 +47,9 @@ public class SQLCalls {
 
 	public SQLCalls()
 	{
-		DB_URL = "jdbc:mysql://localhost:3306/triviagame?user=root&password=Uff.ar.ted07&useUnicode=true&characterEncoding=UTF-8";
+		DB_URL = "jdbc:mysql://localhost:3306/triviagame?user=root&password=Vivtheavidstudent818*&useUnicode=true&characterEncoding=UTF-8";
 		USER = "root";
-		PASS = "Uff.ar.ted07";
+		PASS = "Vivtheavidstudent818*";
 	}
 	
 	public void createAcount(String username, String password)
