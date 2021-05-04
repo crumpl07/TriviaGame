@@ -16,13 +16,13 @@ import javafx.stage.Stage;
 
 public class TriviaSelection 
 {
-	public void selectTrivia(Stage stage)
+	public void selectTrivia(Stage stage, String user)
 	{
 		Group group = new Group();
 		Text selectTxt = new Text("Choose a quiz! Test your knowledge!");
 
 		SQLCalls sql = new SQLCalls();
-		backButton(group, stage);
+		backButton(group, stage, user);
 		
 		selectTxt.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 22));
 		selectTxt.relocate(165, 20);
@@ -34,7 +34,7 @@ public class TriviaSelection
 		
 		for(int i = 0; i < quizNames.size(); i++)
 		{
-			vb.getChildren().add(new Quiz(stage, quizNames.get(i)));
+			vb.getChildren().add(new Quiz(stage, quizNames.get(i), user));
 		}
 		
 		sp.relocate(150, 70);
@@ -51,7 +51,7 @@ public class TriviaSelection
 		stage.show();
 	}
 	
-	public void backButton(Group group, Stage stage)
+	public void backButton(Group group, Stage stage, String user)
 	{
 		Button button = new Button();
 		button.setText("Back");
@@ -60,7 +60,7 @@ public class TriviaSelection
 		HomePage homepage = new HomePage();
 		
 		button.setOnAction(e-> {
-				homepage.homePage(stage);
+				homepage.homePage(stage, user);
 		});
 		
 		group.getChildren().add(button);
@@ -68,7 +68,7 @@ public class TriviaSelection
 	
 	public class Quiz extends Button
 	{
-		public Quiz(Stage stage, String title)
+		public Quiz(Stage stage, String title, String user)
 		{
 			super(title);
 			
@@ -78,7 +78,7 @@ public class TriviaSelection
 				
 			this.setOnAction(e->{
 				TriviaPlay page = new TriviaPlay();
-				page.triviaPlayPage(stage, title);
+				page.triviaPlayPage(stage, title, user);
 			});
 			
 			this.setOnMouseEntered(e->{

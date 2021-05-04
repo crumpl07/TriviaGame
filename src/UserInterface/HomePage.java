@@ -17,14 +17,14 @@ import javafx.stage.Stage;
 
 public class HomePage {
 	
-	public void homePage(Stage stage)
+	public void homePage(Stage stage, String user)
 	{
 		Group group = new Group();
 		
-		playButton(group, stage);
-		triviaCreationButton(group, stage);
-		highScoresButton(group, stage);
-		settingsButton(group, stage);
+		playButton(group, stage, user);
+		triviaCreationButton(group, stage, user);
+		highScoresButton(group, stage, user);
+		settingsButton(group, stage, user);
 		logOutButton(group, stage);
 		image(group);
 		triviaGameLabel(group);
@@ -38,7 +38,7 @@ public class HomePage {
 		stage.show();
 	}
 	
-	public void playButton(Group group, Stage stage)
+	public void playButton(Group group, Stage stage, String user)
 	{
 		Button playButton = new Button();
 		playButton.relocate(20, 100);
@@ -49,13 +49,13 @@ public class HomePage {
 		TriviaSelection triviaSelect = new TriviaSelection();
 		
 		playButton.setOnAction(e->{
-			triviaSelect.selectTrivia(stage);
+			triviaSelect.selectTrivia(stage, user);
 		});
 		
 		group.getChildren().addAll(playButton);
 	}
 	
-	public void triviaCreationButton(Group group, Stage stage)
+	public void triviaCreationButton(Group group, Stage stage, String user)
 	{
 		Button triviaButton = new Button();
 		triviaButton.relocate(20, 160);
@@ -66,13 +66,13 @@ public class HomePage {
 		TriviaCreatePage triviaPage = new TriviaCreatePage();
 		
 		triviaButton.setOnAction(e->{
-			triviaPage.createTrivia(stage);
+			triviaPage.createTrivia(stage, user);
 		});
 		
 		group.getChildren().addAll(triviaButton);
 	}
 	
-	public void highScoresButton(Group group, Stage stage)
+	public void highScoresButton(Group group, Stage stage, String user)
 	{
 		Button scoresButton = new Button();
 		scoresButton.relocate(20, 220);
@@ -85,13 +85,13 @@ public class HomePage {
 		scoresButton.setOnAction(e-> {
 			
 		
-			page.ScoresPage(stage);
+			page.ScoresPage(stage, user);
 		});
 		
 		group.getChildren().addAll(scoresButton);
 	}
 	
-	public void settingsButton(Group group, Stage stage)
+	public void settingsButton(Group group, Stage stage, String user)
 	{
 		Button settingsButton = new Button();
 		settingsButton.relocate(20, 280);
@@ -102,7 +102,7 @@ public class HomePage {
 		SettingsPage settings = new SettingsPage();
 		
 		settingsButton.setOnAction(e-> {
-			settings.settingsPage(stage);
+			settings.settingsPage(stage, user);
 		});
 		
 		group.getChildren().addAll(settingsButton);

@@ -18,7 +18,7 @@ public class HighScoresPage {
 	
 	ArrayList<String> hello = new ArrayList<String>();
 	
-	public void ScoresPage(Stage stage)
+	public void ScoresPage(Stage stage, String user)
 	{
 		Group group = new Group();
 		Label highscoreL = new Label("PEOPLE THAT do not KNOW MANY THINGS\n"
@@ -27,7 +27,7 @@ public class HighScoresPage {
 		highscoreL.relocate(150, 50);
 		highscoreL.setTextAlignment(TextAlignment.CENTER);
 		
-		backButton(group, stage);
+		backButton(group, stage, user);
 		Scores();
 		highScoreLabels(group);
 		group.getChildren().add(highscoreL);
@@ -42,7 +42,7 @@ public class HighScoresPage {
 	}
 
 	
-	public void backButton(Group group, Stage stage)
+	public void backButton(Group group, Stage stage, String user)
 	{
 		Button button = new Button();
 		button.setText("Back");
@@ -51,7 +51,7 @@ public class HighScoresPage {
 		HomePage homepage = new HomePage();
 		
 		button.setOnAction(e-> {
-				homepage.homePage(stage);
+				homepage.homePage(stage, user);
 		});
 		
 		group.getChildren().add(button);

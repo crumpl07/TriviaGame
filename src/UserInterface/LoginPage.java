@@ -40,7 +40,7 @@ public class LoginPage extends Application{
 	      scene.setOnKeyReleased(e->{
 	    	  if(e.getCode() == KeyCode.Q)
 	    	  {
-	    		  homepage.homePage(stage);
+	    		  homepage.homePage(stage, "q");
 	    	  }
 	      });
 	}
@@ -136,7 +136,7 @@ public class LoginPage extends Application{
 				
 				else
 				{
-					home.homePage(stage);
+					home.homePage(stage, username);
 				}
 			}catch (Exception e1) {
 				// TODO Auto-generated catch block
