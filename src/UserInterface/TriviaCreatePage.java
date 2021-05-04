@@ -93,18 +93,17 @@ public class TriviaCreatePage {
 		
 		submitButton.setOnAction(e->{
 			//All the relevant Strings are in the Array List "questions"
-			
-			for(int i = 0; i < questions.size(); i++)
+			sql.createQuiz(sql.getHighestID("quiz")+1, title.getText());
+			for(Question x: questions)
 			{
-				sql.createQuiz(sql.getHighestID("quiz")+1, title.getText());
 				sql.createQuestion (sql.getHighestID("quiz"),
-									questions.get(i).answer1Tf.getText(),
-									questions.get(i).answer2Tf.getText(),
-									questions.get(i).answer3Tf.getText(),
-									questions.get(i).corrAnswerTf.getText(),
-									questions.get(i).questionTf.getText());
+									(x).answer1Tf.getText(),
+									(x).answer2Tf.getText(),
+									(x).answer3Tf.getText(),
+									(x).corrAnswerTf.getText(),
+									(x).questionTf.getText());
+				System.out.println("Added Questions");
 			}
-			System.out.println("Added Questions");
 		});
 		
 		group.getChildren().addAll(submitButton);

@@ -1,17 +1,15 @@
 package UserInterface;
 
-import UserInterface.TriviaCreatePage.Question;
+import java.util.ArrayList;
+
+import SQL.SQLCalls;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class TriviaSelection 
@@ -20,29 +18,29 @@ public class TriviaSelection
 	{
 		Group group = new Group();
 		
+		SQLCalls sql = new SQLCalls();
 		backButton(group, stage);
-		
-		Button quiz = new Quiz("poodles");
-		group.getChildren().add(quiz);
 		
 		ScrollPane sp = new ScrollPane();
 		VBox vb = new VBox(); 
+		Button addBt = new Button("+");
+	
+		ArrayList<String> quizNames = sql.getQuizzes();
+		
+		for(int i = 0; i < quizNames.size(); i++)
+		{
+			vb.getChildren().add(new Quiz(stage, quizNames.get(i)));
+		}
 		
 		sp.relocate(100, 60);
 		sp.setContent(vb);
-		sp.setPrefSize(510, 375);
+		sp.setPrefSize(450, 375);
 		
-		for()
-		{
-			
-		}
-		
-		quiz.add(new Question());
-		vb.getChildren().add(quiz.get(quiz.size()-1));
+		group.getChildren().add(sp);
 		
 		Scene scene = new Scene(group, 700, 500);
 		stage.setResizable(false);
-		scene.setFill(Color.BLANCHEDALMOND);
+
 		stage.setTitle("Select Trivia");
 		stage.setScene(scene);
 		stage.show();
@@ -65,16 +63,17 @@ public class TriviaSelection
 	
 	public class Quiz extends Button
 	{
-		
-		public Quiz(String title)
+		public Quiz(Stage stage, String title)
 		{
 			super(title);
+			
 			this.setStyle("-fx-background-color: lightblue");
-			this.setPrefSize(400, 65);
-			this.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 30));
-			this.relocate(10, 10);
-			this.setOnAction(e->{
+			this.setPrefSize(400, 75);
+			this.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 15));
 				
+			this.setOnAction(e->{
+				TriviaPlay page = new TriviaPlay();
+				page.triviaPlayPage(stage, title);
 			});
 			
 			this.setOnMouseEntered(e->{
@@ -87,19 +86,3 @@ public class TriviaSelection
 		}
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
