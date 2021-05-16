@@ -1,5 +1,5 @@
 # TriviaGame
 The goal of this project is to create a Trivia Game.
 
-![picture](crumpl07/TriviaGame/blob/Luke/Images/QuizPlay.PNG)
-
+![picture](https://github.com/crumpl07/TriviaGame/edit/Luke/README.md)
+[alt text](https://github.com/crumpl07/TriviaGame/edit/Luke/README.md)
