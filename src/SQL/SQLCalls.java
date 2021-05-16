@@ -12,11 +12,11 @@ import javafx.scene.layout.Pane;
 
 public class SQLCalls {
 	// JDBC driver name and database URL
-	public String DB_URL = "jdbc:mysql://localhost:3306/TriviaGame?user=root&password=Uff.ar.ted07&useUnicode=true&characterEncoding=UTF-8";
+	public String DB_URL = "jdbc:mysql://localhost:3306/TriviaGame?user=root&password=password&useUnicode=true&characterEncoding=UTF-8";
 
 	// Database credentials
 	String USER = "root";
-	String PASS = "Uff.ar.ted07";
+	String PASS = "password";
 
 	Connection conn = null;
 	Statement stmt = null;
