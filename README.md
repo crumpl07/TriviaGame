@@ -5,16 +5,21 @@ The application we are aiming to build is a trivia game creator. The user will b
 Below are some screenshots of the project and its different scenes.
 
 Login Page:
+
 ![picture](https://github.com/crumpl07/TriviaGame/blob/Luke/Images/LoginPage.PNG)
 
 Main Menu:
+
 ![picture](https://github.com/crumpl07/TriviaGame/blob/Luke/Images/QuizFrontPage.PNG)
 
 Quiz Creation Menu:
+
 ![picture](https://github.com/crumpl07/TriviaGame/blob/Luke/Images/TriviaCreation.PNG)
 
 Quiz Selection Menu:
+
 ![picture](https://github.com/crumpl07/TriviaGame/blob/Luke/Images/QuizSelection.PNG)
 
 Quiz Menu:
+
 ![picture](https://github.com/crumpl07/TriviaGame/blob/Luke/Images/QuizPlay.PNG)
