@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
@@ -46,6 +47,13 @@ public class TriviaPlay {
 		Label answer2 = new Label(questions.get(index).incorrectAnswer2);
 		Label answer3 = new Label(questions.get(index).incorrectAnswer3);
 		Label correctAnswer = new Label(questions.get(index).answer);
+		
+		question.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 15));
+		answer1.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 15));
+		answer2.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 15));
+		answer3.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 15));
+		correctAnswer.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 15));
+		titles.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 15));
 		
 		ToggleGroup tg = new ToggleGroup();
 		
@@ -135,17 +143,17 @@ public class TriviaPlay {
 		
 		Collections.shuffle(list);
 		//Moves the labels around
-		titles.relocate(350,100);
-		question.relocate(350,120);
-		answer1.relocate(350,200+list.get(0));
-		answer2.relocate(350,200+list.get(1));
-		answer3.relocate(350,200+list.get(2));
-		correctAnswer.relocate(350,200+list.get(3));
+		titles.relocate(300,130);
+		question.relocate(250,170);
+		answer1.relocate(300,200+list.get(0));
+		answer2.relocate(300,200+list.get(1));
+		answer3.relocate(300,200+list.get(2));
+		correctAnswer.relocate(300,200+list.get(3));
 		//Moves the answer toggles around
-		answer1rb.relocate(300,200+list.get(0));
-		answer2rb.relocate(300,200+list.get(1));
-		answer3rb.relocate(300,200+list.get(2));
-		correctAnswerrb.relocate(300,200+list.get(3));
+		answer1rb.relocate(250,200+list.get(0));
+		answer2rb.relocate(250,200+list.get(1));
+		answer3rb.relocate(250,200+list.get(2));
+		correctAnswerrb.relocate(250,200+list.get(3));
 		nextb.relocate(400, 400);
 		
 		
@@ -155,6 +163,7 @@ public class TriviaPlay {
 		Scene scene = new Scene(group, 700, 500);
 		stage.setResizable(false);
 		
+		scene.setFill(Color.HONEYDEW);
 		stage.setTitle("Play");
 		stage.setScene(scene);
 		stage.show();
